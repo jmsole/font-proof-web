@@ -23,16 +23,10 @@
 	<div class="tabs">
 	  <!-- Navigation -->
 	  <ul class="tabNavigation">
-	    <li><a href="#briem">Briem's</a></li>
-	    <li><a href="#blake">Stephenson Blake</a></li>
 	    <li><a href="#king">Kern King</a></li>
 	    <li><a href="#words">Kern Words</a></li>
 	    <li><a href="#minimalkerning">Minimal Kerning Pairs</a></li>
-	    <li><a href="#oldnick">Nick</a></li>
-	    <li><a href="#ruder">Ruder</a></li> 
 	    <li><a href="#ngrams">Ngrams</a></li> 
-	    <li><a href="#googlebooksEnglish">GBC English</a></li>
-	    <li><a href="#googlebooksSpanish">GBC Spanish</a></li>    
 	    <li><a href="#capsgrid">UC Grid</a></li>
 	    <li><a href="#upperspacing01">UC 1</a></li>
 	    <li><a href="#upperspacing02">UC 2</a></li>
@@ -49,27 +43,16 @@
 	    <li><a href="#numbers4">Num 4</a></li> 
 	    <li><a href="#fractions">Fractions</a></li>	      		    
 	    <li><a href="#overshoots">Overshoots</a></li>
-	    <li><a href="#pangra">Pangrams</a></li>
 	    <li><a href="#apostrophes">Apostrophes</a></li>
 	    <li><a href="#dia_one">Diacritics 1</a></li>	 
 	    <li><a href="#dia_two">Diacritics 2</a></li>
 	    <li><a href="#dia_three">Diacritics 3</a></li>
 	    <li><a href="#dia_four">Diacritics 4</a></li> 
 	    <li><a href="#locale">Locale</a></li>
-	    <li><a href="#news">Headlines</a></li>
 	    <li><a href="#groups">Groups</a></li>
-	    <li><a href="#fun">Fun</a></li>
 	  </ul>
 
 	  <!-- Briem Basic Proof -->
-	  <div id="briem">
-	  	<?php include("includes/latin-02/briem.php"); ?>
-	  </div>
-
-	  <!-- Blake Proof -->
-	  <div id="blake">
-	  	<?php include("includes/latin-02/stephenson-blake.php"); ?>
-	  </div>
 
 	  <!-- Kern King -->
 	  <div id="king">
@@ -86,29 +69,9 @@
 		<?php include("includes/latin-02/kern-minimal.php"); ?>	
 	  </div>
 
-	  <!-- Old Nick -->
-	  <div id="oldnick">
-	  	<?php include("includes/latin-02/old-nick.php"); ?>
-	  </div>
-
-	  <!-- Emil Ruders -->
-	  <div id="ruder">
-	  	<?php include("includes/latin-02/ruder.php"); ?>
-	  </div>
-
 	  <!-- Ngrams -->
 	  <div id="ngrams">
 	  	<?php include("includes/latin-02/ngrams.php"); ?>
-	  </div>
-
-	  <!-- Google Books Corpus: English -->
-	  <div id="googlebooksEnglish">
-	  	<?php include("includes/latin-02/googlebooks-english.php"); ?>
-	  </div>	  
-
-	  <!-- Google Books Corpus: Spanish -->
-	  <div id="googlebooksSpanish">
-	  	<?php include("includes/latin-02/googlebooks-spanish.php"); ?>
 	  </div>
 
 	  <!-- Grid Uppercase -->
@@ -190,12 +153,7 @@
 	  <div id="overshoots">
 		<?php include("includes/latin-02/overshoots.php"); ?>	
 	  </div>
-
-	  <!-- Pangrams -->
-	  <div id="pangra">
-		<?php include("includes/latin-02/pangra.php"); ?>			
-	  </div>	 	  
-
+	
 	  <!-- Apostrophes -->
 	  <div id="apostrophes">
 		<?php include("includes/latin-02/apostrophes.php"); ?>			
@@ -226,21 +184,10 @@
 	  	<?php include("includes/latin-02/locale.php"); ?>
 	  </div>
 
-	  <!-- News -->
-	  <div id="news">
-		<?php include("includes/latin-02/news.php"); ?>			
-	  </div>
-	  
 	  <!-- Groups -->
 	  <div id="groups">
 		<?php include("includes/latin-02/groups.php"); ?>			
 	  </div>
-	  
-	  <!-- Fun -->
-	  <div id="fun">
-		<?php include("includes/latin-02/fun.php"); ?>			
-	  </div>	  	  
-
 	</div><!-- end tabs -->
 
 </section>

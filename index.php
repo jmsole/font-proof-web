@@ -8,6 +8,9 @@
 <link type="text/css" href="css/print-v9.css" rel="stylesheet" media="print" charset="utf-8" />
 <script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 <script>localStorage.clear();</script>
+<script type="module" src="js/lib-font.browser.js" async></script>
+<script src="js/inflate.js" defer></script>
+<script src="js/unbrotli.js" defer></script>
 <script src="js/fontdrag.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/otfeatures-v9.1.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/contentEditable.js" type="text/javascript" charset="utf-8"></script>
@@ -36,22 +39,22 @@ $(document).ready(function(){
 	  <ul class="tabNavigation">
 	    <li><a href="#headlines">Headlines</a></li>
 	    <li><a href="#text">Text</a></li>
-	    <li><a href="#adhesion">adhesion</a></li>
-	    <li><a href="#hamburgefonstiv">hamburgefonstiv</a></li>
 	    <li><a href="#lowercases">a-z</a></li>
+		<li><a href="#uppercases">A-Z</a></li>
 	    <li><a href="#caps">Words</a></li>
 	    <li><a href="#allcaps">Caps</a></li>
-	    <li><a href="#layout">Layout</a></li>
 	    <li><a href="#lettering">Lettering</a></li>
 	    <li><a href="#kern">Kern</a></li>
+		<li><a href="#fuchs-kern">Andre Fuchs</a></li>
 	    <li><a href="#hinting">Hinting</a></li>
-	    <li><a href="#latin">Latin</a></li>
+	    <li><a href="#diacritics">Diacritics</a></li>
 	    <li><a href="#world">World Scripts</a></li>
+		<li><a href="#vmetrics">Vertical Metrics</a></li>
 	  </ul>
 	
 	  <!-- Headlines (Content injected via constants.js) -->
 	  <div id="headlines">
-		<div style="white-space: nowrap; overflow: hidden; width: 1020px;"></div>
+		<div style="white-space: nowrap; overflow: hidden;"></div>
 	  </div>
 	  
 	  <!-- Text (Content injected via Javascript) -->
@@ -60,31 +63,9 @@ $(document).ready(function(){
 			<div class="textsettingCol2"></div>
 	  </div>
 
-	  <!-- adhesion (Content injected via constants.js) -->
-	  <div id="adhesion">
-	  		<div style="white-space: nowrap; overflow: hidden; width: 1020px;"></div>			
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<div style="width: 1020px;">
-				<div class="textsettingCol1"></div>
-				<div class="textsettingCol2"></div>
-			</div>
-	  </div>
-
-	  <!-- hamburgefonstiv (Content injected via constants.js) -->
-	  <div id="hamburgefonstiv">
-	  		<div style="white-space: nowrap; overflow: hidden; width: 1020px;" ></div>				
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<div style="width: 1020px;">
-				<div class="textsettingCol1"></div>
-				<div class="textsettingCol2"></div>
-			</div>
-	  </div>
-
 	  <!-- Lowercases a-z (Content injected via constants.js) -->
 	  <div id="lowercases">
-	  		<div style="white-space: nowrap; overflow: hidden; width: 1020px;"></div>				
+	  		<div style="white-space: nowrap; overflow: hidden;"></div>				
 			<p>&nbsp;</p>
 			<p>&nbsp;</p>
 			<div style="width: 1020px;">
@@ -92,20 +73,25 @@ $(document).ready(function(){
 				<div class="textsettingCol2"></div>
 			</div>
 	  </div>
+
+	  <div id="uppercases">
+				<div style="white-space: nowrap; overflow: hidden;"></div>				
+			  <p>&nbsp;</p>
+			  <p>&nbsp;</p>
+			  <div style="width: 1020px;">
+				  <div class="textsettingCol1"></div>
+				  <div class="textsettingCol2"></div>
+			  </div>
+		</div>
 
 	  <!-- Caps (Content injected via constants.js) -->
 	  <div id="caps">
-	  		<div style="width: 1020px;"></div>				
+	  		<div></div>				
 	  </div>
 
 	  <!-- All Caps (Content injected via constants.js) -->
 	  <div id="allcaps">
-	  		<div style="width: 1020px;"></div>				
-	  </div>
-
-	  <!-- Layout -->
-	  <div id="layout">
-	  	<?php include("includes/latin/layout.php"); ?>						
+	  		<div></div>				
 	  </div>
 
 	  <!-- Lettering Sheet -->
@@ -116,6 +102,10 @@ $(document).ready(function(){
 	  <!-- Kerning -->
 	  <div id="kern">
 	  	<?php include("includes/latin/kerning.php"); ?>			
+	  </div>
+	  
+	  <div id="fuchs-kern">
+			<?php include("includes/latin/fuchs-kern.php"); ?>			
 	  </div>
 
 	  <!-- Hinting (Content injected via constants.js) -->
@@ -151,14 +141,19 @@ $(document).ready(function(){
 	  </div>
 
 	  <!-- Latin -->
-	  <div id="latin">
-	  	<?php include("includes/latin/diatrics.php"); ?>
+	  <div id="diacritics">
+	  	<?php include("includes/latin/diacritics.php"); ?>
 	  </div>
 	  
 	  <!-- Non-Latin -->
 	  <div id="world">
 	  	<?php include("includes/latin/world-scripts.php"); ?>
 	  </div>
+
+	  <!-- Vertical Metrics -->
+		<div id="vmetrics">
+			<?php include("includes/latin/vertical-metrics.php"); ?>			
+		</div>
 
 	</div><!-- end tabs -->
 
