@@ -1,6 +1,6 @@
 var GRUMPIES = {
     'short': {
-        'text': "Grumpy wizards make toxic brew for the evil Queen and Jack. A quick movement of the enemy will jeopardize six gunboats. The job of waxing linoleum frequently peeves chintzy kids. My girl wove six dozen plaid jackets before she quit. Twelve ziggurats quickly jumped a finch box.",
+        'text': "Jackdaws love my big sphinx of quartz. Victors flank gypsy who mixed up on job quiz. Wolves exit quickly as fanged zoo chimps jabber. Five jumbo oxen graze quietly with packs of dogs. Grumpy wizards make toxic brew for the evil queen and jack. Lazy movers quit hard packing of jewelry boxes. Ban foul, toxic smogs which quickly jeopardize lives. Hark! Toxic jungle water vipers quietly drop on zebras for meals!",
         'columns': [ // single column
             {
                 sizes: [96, 84, 72, 60, 48, 36, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12],
@@ -11,7 +11,7 @@ var GRUMPIES = {
     },
 
     'long': {
-        'text': "Grumpy wizards make toxic brew for the evil Queen and Jack. One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked. 01234567890 ",
+        'text': "Angel Adept Blind Bodice Clique Coast Dunce Docile Enact Eosin Furlong Focal Gnome Gondola Human Hoist Inlet Iodine Justin Jocose Knoll Koala Linden Loads Milliner Modal Number Nodule Onset Oddball Pneumo Poncho Quanta Qophs Rhone Roman Snout Sodium Tundra Tocsin Uncle Udder Vulcan Vocal Whale Woman Xmas Xenon Yunnan Young Zloty Zodiac. Angel angel adept for the nuance loads of the arena cocoa and quaalude. Blind blind bodice for the submit oboe of the club snob and abbot. Clique clique coast for the pouch loco of the franc assoc and accede. Dunce dunce docile for the loudness mastodon of the loud statehood and huddle. Enact enact eosin for the quench coed of the pique canoe and bleep. Furlong furlong focal for the genuflect profound infinity of the motif aloof and offers. Gnome gnome gondola for the impugn logos of the unplug analog and smuggle. Human human hoist for the buddhist alcohol of the riyadh caliph and bathhouse. Inlet inlet iodine for the quince champion of the ennui scampi and shiite. Justin justin jocose for the djibouti sojourn of the oranj raj and hajjis. Knoll knoll koala for the banknote lookout of the dybbuk outlook and trekked. Linden linden loads for the ulna monolog of the consul menthol and shallot. Milliner milliner modal for the alumna solomon of the album custom and summon. Number number nodule for the unmade economic of the shotgun bison and tunnel. Onset onset oddball for the abandon podium of the antiquo tempo and moonlit. Pneumo pneumo poncho for the dauphin opossum of the holdup bishop and supplies. Quanta quanta qophs for the inquest sheqel of the cinq coq and suqqu. Rhone rhone roman for the burnt porous of the lemur clamor and carrot. Snout snout sodium for the ensnare bosom of the genus pathos and missing. Tundra tundra tocsin for the nutmeg isotope of the peasant ingot and ottoman. Uncle uncle udder for the dunes cloud of the hindu thou and continuum. Vulcan vulcan vocal for the alluvial ovoid of the yugoslav chekhov and revved. Whale whale woman for the meanwhile blowout of the forepaw meadow and glowworm. Xmas xmas xenon for the bauxite doxology of the tableaux equinox and exxon. Yunnan yunnan young for the dynamo coyote of the obloquy employ and sayyid. Zloty zloty zodiac for the gizmo ozone of the franz laissez and buzzing.",
         'columns': [ // two columns
             {sizes: [20, 19, 18, 17], innerblock: '.textsettingCol1'},
             {sizes: [16, 15, 14, 13, 12, 11, 10], innerblock: '.textsettingCol2'}
@@ -20,7 +20,7 @@ var GRUMPIES = {
     },
 
     'lowercaseShort': {
-        'text': "the five boxing wizards jump quickly pack my red box with five dozen quality jugs a very big box sailed up then whizzed quickly from japan",
+        'text': "jackdaws love my big sphinx of quartz. victors flank gypsy who mixed up on job quiz. wolves exit quickly as fanged zoo chimps jabber.",
         'columns': [
             {sizes: [96, 84, 72, 60, 48, 36, 30, 24, 18], innerblock: 'div:first'}
         ],
@@ -28,7 +28,7 @@ var GRUMPIES = {
     },
 
     'lowercaseLong': {
-        'text': "serviced tightly trestle custom nosey impugned gooier deeper oat charade smashed welting clopping fondly discard welfare gaudy mission shoddily mooed knelling glance golfed trope togae knocked vulgarly gigabyte curbing snowball outback stepped marmot clayier coltish descry gratify root freedom puree urgency moist careered journal oracle felony marble salary readying besiege twitched ranching snoozing disk mister warbling outwit schism sudsiest street gondola blushing pennon smarted jiving sty rocker griping rocketry dieing tarring A very big box sailed up then whizzed quickly from Japan the five boxing wizards jump quickly pack my red box with five dozen quality jugs",
+        'text': "angel adept for the nuance loads of the arena cocoa and quaalude. blind bodice for the submit oboe of the club snob and abbot. clique coast for the pouch loco of the franc assoc and accede. dunce docile for the loudness mastodon of the loud statehood and huddle. enact eosin for the quench coed of the pique canoe and bleep. furlong focal for the genuflect profound infinity of the motif aloof and offers. gnome gondola for the impugn logos of the unplug analog and smuggle. human hoist for the buddhist alcohol of the riyadh caliph and bathhouse. inlet iodine for the quince champion of the ennui scampi and shiite. justin jocose for the djibouti sojourn of the oranj raj and hajjis. knoll koala for the banknote lookout of the dybbuk outlook and trekked. linden loads for the ulna monolog of the consul menthol and shallot. milliner modal for the alumna solomon of the album custom and summon. number nodule for the unmade economic of the shotgun bison and tunnel. onset oddball for the abandon podium of the antiquo tempo and moonlit. pneumo poncho for the dauphin opossum of the holdup bishop and supplies. quanta qophs for the inquest sheqel of the cinq coq and suqqu. rhone roman for the burnt porous of the lemur clamor and carrot. snout sodium for the ensnare bosom of the genus pathos and missing. tundra tocsin for the nutmeg isotope of the peasant ingot and ottoman. uncle udder for the dunes cloud of the hindu thou and continuum. vulcan vocal for the alluvial ovoid of the yugoslav chekhov and revved. whale woman for the meanwhile blowout of the forepaw meadow and glowworm. xmas xenon for the bauxite doxology of the tableaux equinox and exxon. yunnan young for the dynamo coyote of the obloquy employ and sayyid. zloty zodiac for the gizmo ozone of the franz laissez and buzzing",
         'columns': [
             {sizes: [16, 15, 14], innerblock: '.textsettingCol1'},
             {sizes: [13, 12, 11, 10], innerblock: '.textsettingCol2'}
@@ -36,52 +36,35 @@ var GRUMPIES = {
         'tab': '#lowercases'
     },
 
-    'adhesionShort': {
-        'text': "adhesion donnishness indianians deaden on ode so sheenie died dashed dens seaside easines nonseasoned seen hindi said seines sadnesses deaden donnishness dissensions dead",
+    'uppercaseShort': {
+        'text': "JACKDAWS LOVE MY BIG SPHINX OF QUARTZ. VICTORS FLANK GYPSY WHO MIXED UP ON JOB QUIZ. WOLVES EXIT QUICKLY AS FANGED ZOO CHIMPS JABBER.",
         'columns': [
             {sizes: [96, 84, 72, 60, 48, 36, 30, 24, 18], innerblock: 'div:first'}
         ],
-        'tab': '#adhesion'
+        'tab': '#uppercases'
     },
-
-    'adhesionLong': {
-        'text': "dined shoon hooded ahead shined hashed dinned soon nod nine sane inned ani session doe node idea side indeed aide anise hose noose noshed inside hid aeon inane none hoed nosed diseased handed noise haded sanded one hie deeded shine honed disdained hen ash said hah onion sodded donned and aha dine disease deed adenoid hoodooed deaned end denied anon iodine nosh shooed deadened sided addenda did aniseed sand hied nodded nose shoeshine hashish hissed done seed noon sensed sinned needed send nooned odd disdain shinned anion had shied",
+    
+    'uppercaseLong': {
+        'text': "ABIDE ACORN OF THE HABIT DACRON FOR THE BUDDHA GOUDA QUAALUDE. BENCH BOGUS OF THE SCRIBE ROBOT FOR THE APLOMB JACOB RIBBON. CENSUS CORAL OF THE SPICED JOCOSE FOR THE BASIC HAVOC SOCCER. DEMURE DOCILE OF THE TIDBIT LODGER FOR THE CUSPID PERIOD BIDDER. EBBING ECHOING OF THE BUSHED DECAL FOR THE APACHE ANODE NEEDS. FEEDER FOCUS OF THE LIFER BEDFORD FOR THE SERIF PROOF BUFFER. GENDER GOSPEL OF THE PIGEON DOGCART FOR THE SPRIG QUAHOG DIGGER. HERALD HONORS OF THE DIHEDRAL MADHOUSE FOR THE PENH RIYADH BATHHOUSE. IBSEN ICEMAN OF THE APHID NORDIC FOR THE SUSHI SAUDI SHIITE. JENNIES JOGGER OF THE TIJERA ADJOURN FOR THE ORANJ KOWBOJ HAJJIS. KEEPER KOSHER OF THE SHRIKE BOOKCASE FOR THE SHEIK LOGBOOK CHUKKAS. LENDER LOCKER OF THE CHILD GIGOLO FOR THE UNCOIL GAMBOL ENROLLED. MENACE MCCOY OF THE NIMBLE TOMCAT FOR THE DENIM RANDOM SUMMON. NEBULA NOSHED OF THE INBRED BRONCO FOR THE COUSIN CARBON KENNEL. OBSESS OCEAN OF THE PHOBIC DOCKSIDE FOR THE GAUCHO LIBIDO HOODED. PENNIES PODIUM OF THE SNIPER OPCODE FOR THE SCRIP BISHOP HOPPER. QUANTA QOPHS OF THE INQUEST OQOS FOR THE CINQ COQ SUQQU. REDUCE ROGUE OF THE GIRDLE ORCHID FOR THE MEMOIR SENSOR SORREL. SENIOR SCONCE OF THE DISBAR GODSON FOR THE HUBRIS AMENDS LESSEN. TENDON TORQUE OF THE UNITED SCOTCH FOR THE NOUGHT FORGOT BITTERS. UNDER UGLINESS OF THE RHUBARB SEDUCE FOR THE MANCHU HINDU CONTINUUM. VERSED VOUCH OF THE DIVER OVOID FOR THE TELAVIV KARPOV FLIVVER. WENCH WORKER OF THE UNWED SNOWCAP FOR THE ANDREW ESCROW GLOWWORM. XENON XOCHITL OF THE MIXED BOXCAR FOR THE SUFFIX ICEBOX EXXON. YEOMAN YONDER OF THE HYBRID ARROYO FOR THE DINGHY BRANDY SAYYID. ZEBRA ZOMBIE OF THE PRIZED OZONE FOR THE FRANZ ARROZ BUZZING.",
         'columns': [
             {sizes: [16, 15, 14], innerblock: '.textsettingCol1'},
             {sizes: [13, 12, 11, 10], innerblock: '.textsettingCol2'}
         ],
-        'tab': '#adhesion'
-    },
-
-    'hamburgefonstivShort': {
-        'text': "fortieth boring trait favoring barrage referring thrusting tannest embargo sausage gaining astutest augur hibernate variant hearse beggaring foresee eagerer hearten ensnaring tufting interstate meager veneration stigma feminine tabbing noising trimming throbbing ransoming stiffen oaring fishing rehire overbore bonniest ravishment teensiest mintier shriven unforeseen overrate surgeon smarter submarine revenging assuaging masher amnesia insentient rehashing fresher buttering sorghum thine sitter month serer minting variate torsion gaunt",
-        'columns': [
-            {sizes: [96, 84, 72, 60, 48, 36, 30, 24, 18], innerblock: 'div:first'}
-        ],
-        'tab': '#hamburgefonstiv'
-    },
-
-    'hamburgefonstivLong': {
-        'text': "fortieth boring trait favoring barrage referring thrusting tannest embargo sausage gaining astutest augur hibernate variant hearse beggaring foresee eagerer hearten ensnaring tufting interstate meager veneration stigma feminine tabbing noising trimming throbbing ransoming stiffen oaring fishing rehire overbore bonniest ravishment teensiest mintier shriven unforeseen overrate surgeon smarter submarine revenging assuaging masher amnesia insentient rehashing fresher buttering sorghum thine sitter month serer minting variate torsion gaunt berthing goofiest sober informing sourer tonight neigh iratest torte situate rheumier antagonist serening motion guise unseeing masseuse",
-        'columns': [
-            {sizes: [16, 15, 14], innerblock: '.textsettingCol1'},
-            {sizes: [13, 12, 11, 10], innerblock: '.textsettingCol2'}
-        ],
-        'tab': '#hamburgefonstiv'
+        'tab': '#uppercases'
     },
 
     'caps': {
-        'text': "Arrowroot Barley Chervil Dumpling Endive Flaxseed Garbanzo Hijiki Ishtu Jicama Kale Lychee Marjoram Nectarine Oxtail Pizza Quinoa Roquefort Squash Tofu Uppuma Vanilla Wheat Xergis Yogurt Zweiback 0 1 2 3 4 5 6 7 8 9 ! ?",
+        'text': "Angel Adept Blind Bodice Clique Coast Dunce Docile Enact Eosin Furlong Focal Gnome Gondola Human Hoist Inlet Iodine Justin Jocose Knoll Koala Linden Loads Milliner Modal Number Nodule Onset Oddball Pneumo Poncho Quanta Qophs Rhone Roman Snout Sodium Tundra Tocsin Uncle Udder Vulcan Vocal Whale Woman Xmas Xenon Yunnan Young Zloty Zodiac 0 1 2 3 4 5 6 7 8 9 ! ?",
         'columns': [
-            {sizes: [60, 48, 36, 30, 28, 24, 20, 18, 16, 14, 13], innerblock: 'div'}
+            {sizes: [90, 60, 48, 36, 30, 28, 24, 20, 18, 16, 14, 13], innerblock: 'div'}
         ],
         'tab': '#caps'
     },
 
     'allcaps': {
-        'text': "ARROWROOT BARLEY CHERVIL DUMPLING ENDIVE FLAXSEED GARBANZO HIJIKI ISHTU JICAMA KALE LYCHEE MARJORAM NECTARINE OXTAIL PIZZA QUINOA ROQUEFORT SQUASH TOFU UPPUMA VANILLA WHEAT XERGIS YOGURT ZWEIBACK 0 1 2 3 4 5 6 7 8 9 ! ?",
+        'text': "ANGEL ADEPT BLIND BODICE CLIQUE COAST DUNCE DOCILE ENACT EOSIN FURLONG FOCAL GNOME GONDOLA HUMAN HOIST INLET IODINE JUSTIN JOCOSE KNOLL KOALA LINDEN LOADS MILLINER MODAL NUMBER NODULE ONSET ODDBALL PNEUMO PONCHO QUANTA QOPHS RHONE ROMAN SNOUT SODIUM TUNDRA TOCSIN UNCLE UDDER VULCAN VOCAL WHALE WOMAN XMAS XENON YUNNAN YOUNG ZLOTY ZODIAC 0 1 2 3 4 5 6 7 8 9 ! ?",
         'columns': [
-            {sizes: [60, 48, 36, 30, 28, 24, 20, 18, 16, 14, 13], innerblock: 'div'}
+            {sizes: [90, 60, 48, 36, 30, 28, 24, 20, 18, 16, 14, 13], innerblock: 'div'}
         ],
         'tab': '#allcaps'
     }
@@ -200,13 +183,9 @@ function prepareAndShowFontLayout() {
     setColumnTemplate($lowercases, GRUMPIES.lowercaseShort);
     setColumnTemplate2($lowercases, GRUMPIES.lowercaseLong);
 
-    var $adhesion = $('#adhesion');
-    setColumnTemplate($adhesion, GRUMPIES.adhesionShort);
-    setColumnTemplate2($adhesion, GRUMPIES.adhesionLong);
-
-    var $hamburgefonstiv = $('#hamburgefonstiv');
-    setColumnTemplate($hamburgefonstiv, GRUMPIES.hamburgefonstivShort);
-    setColumnTemplate2($hamburgefonstiv, GRUMPIES.hamburgefonstivLong);
+    var $uppercases = $('#uppercases');
+    setColumnTemplate($uppercases, GRUMPIES.uppercaseShort);
+    setColumnTemplate2($uppercases, GRUMPIES.uppercaseLong);
 
     var $caps = $('#caps');
     setColumnTemplate2($caps, GRUMPIES.caps);

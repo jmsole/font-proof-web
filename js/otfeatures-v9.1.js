@@ -10,15 +10,20 @@ function refreshFeatures() {
 	var codeCSS3 = "";
 	if (document.getElementById("kern")) codeCSS3 += !document.getElementById("kern").checked ? '"kern" off, ' : '"kern" on, ';
 	if (document.getElementById("liga")) codeCSS3 += !document.getElementById("liga").checked ? '"liga" off, ' : '"liga" on, ';
+	if (document.getElementById("ccmp")) codeCSS3 += !document.getElementById("ccmp").checked ? '"ccmp" off, ' : '"ccmp" on, ';
 	if (document.getElementById("calt")) codeCSS3 += !document.getElementById("calt").checked ? '"calt" off, ' : '"calt" on, ';
-	
+	if (document.getElementById("rlig")) codeCSS3 += !document.getElementById("rlig").checked ? '"rlig" off, ' : '"rlig" on, ';
+	if (document.getElementById("rclt")) codeCSS3 += !document.getElementById("rclt").checked ? '"rclt" off, ' : '"rclt" on, ';
+	if (document.getElementById("rvrn")) codeCSS3 += !document.getElementById("rvrn").checked ? '"rvrn" off, ' : '"rvrn" on, ';
+	if (document.getElementById("mark")) codeCSS3 += !document.getElementById("mark").checked ? '"mark" off, ' : '"mark" on, ';
+	if (document.getElementById("mkmk")) codeCSS3 += !document.getElementById("mkmk").checked ? '"mkmk" off, ' : '"mkmk" on, ';
+
 	if (document.getElementById("dlig")) codeCSS3 += !document.getElementById("dlig").checked ? '' : '"dlig", ';
 	if (document.getElementById("hlig")) codeCSS3 += !document.getElementById("hlig").checked ? '' : '"hlig", ';
-	
+
 	if (document.getElementById("swsh")) codeCSS3 += !document.getElementById("swsh").checked ? '' : '"swsh", ';
 	if (document.getElementById("salt")) codeCSS3 += !document.getElementById("salt").checked ? '' : '"salt", ';
-	if (document.getElementById("titl")) codeCSS3 += !document.getElementById("titl").checked ? '' : '"titl", ';
-	
+
 	if (document.getElementById("ss01")) codeCSS3 += !document.getElementById("ss01").checked ? '' : '"ss01", ';
 	if (document.getElementById("ss02")) codeCSS3 += !document.getElementById("ss02").checked ? '' : '"ss02", ';
 	if (document.getElementById("ss03")) codeCSS3 += !document.getElementById("ss03").checked ? '' : '"ss03", ';
@@ -43,43 +48,65 @@ function refreshFeatures() {
 	if (document.getElementById("smcp")) codeCSS3 += !document.getElementById("smcp").checked ? '' : '"smcp", ';
 	if (document.getElementById("c2sc")) codeCSS3 += !document.getElementById("c2sc").checked ? '' : '"c2sc", ';
 	if (document.getElementById("case")) codeCSS3 += !document.getElementById("case").checked ? '' : '"case", ';
-	
+
 	if (document.getElementById("ordn")) codeCSS3 += !document.getElementById("ordn").checked ? '' : '"ordn", ';
 
 	if (document.getElementById("lnum")) codeCSS3 += !document.getElementById("lnum").checked ? '' : '"lnum", ';
 	if (document.getElementById("onum")) codeCSS3 += !document.getElementById("onum").checked ? '' : '"onum", ';
 	if (document.getElementById("tnum")) codeCSS3 += !document.getElementById("tnum").checked ? '' : '"tnum", ';
-	if (document.getElementById("pnum")) codeCSS3 += !document.getElementById("pnum").checked ? '' : '"pnum", ';	
+	if (document.getElementById("pnum")) codeCSS3 += !document.getElementById("pnum").checked ? '' : '"pnum", ';
 
 	if (document.getElementById("numr")) codeCSS3 += !document.getElementById("numr").checked ? '' : '"numr", ';
 	if (document.getElementById("dnom")) codeCSS3 += !document.getElementById("dnom").checked ? '' : '"dnom", ';
 	if (document.getElementById("sups")) codeCSS3 += !document.getElementById("sups").checked ? '' : '"sups", ';
 	if (document.getElementById("sinf")) codeCSS3 += !document.getElementById("sinf").checked ? '' : '"sinf", ';
-		
+
 	if (document.getElementById("frac")) codeCSS3 += !document.getElementById("frac").checked ? '' : '"frac", ';
 	if (document.getElementById("zero")) codeCSS3 += !document.getElementById("zero").checked ? '' : '"zero", ';
-	
+
 	codeCSS3 = codeCSS3.substring(0, codeCSS3.length - 2);
-	
+
 	// Special Case for Fake Small Caps
 	var fakeSC = !document.getElementById("fake-smcp").checked ? 'normal' : 'small-caps';
+	
+	// Special case for underline and striketrough
+	
+	var rtl = document.getElementById("rtl").checked;
+	var cssallcaps = document.getElementById("cssallcaps").checked;
+	var underline = document.getElementById("underline").checked;
+	var strikethrough = document.getElementById("strikethrough").checked;
+	var textDecoration = "";
+	if (underline) {
+		textDecoration += "underline";
+	}
+	if (strikethrough) {
+		textDecoration += " line-through";
+	}
+	var direction = "";
+	if (rtl) {
+		direction += "rtl";
+	}
+	var textTransform = "";
+	if (cssallcaps) {
+		textTransform += "uppercase";
+	}
 
-	// Show Recommended Code
-	var recommendedCSS = "";
-	if (fakeSC == 'small-caps') recommendedCSS += "font-variant: " + fakeSC + "; <br/>";
-	recommendedCSS += "font-feature-settings: " + codeCSS3 + "; <br/>";
-	recommendedCSS += "-moz-font-feature-settings: " + codeCSS3 + "; <br/>";
-	recommendedCSS += "-webkit-font-feature-settings: " + codeCSS3 + "; <br/>";
-	recommendedCSS += "-ms-font-feature-settings: " + codeCSS3 + "; <br/>";
-	recommendedCSS += "-o-font-feature-settings: " + codeCSS3 + ";";
-    $('#csscode').html( recommendedCSS );
-	
 	// Apply the Code
-	$('#custom').css("font-variant", fakeSC );
-	$('#custom').css("font-feature-settings", codeCSS3 );
-	$('#custom').css("-moz-font-feature-settings", codeCSS3 );
-	$('#custom').css("-webkit-font-feature-settings", codeCSS3 );
-	$('#custom').css("-ms-font-feature-settings", codeCSS3 );
-	$('#custom').css("-o-font-feature-settings", codeCSS3 );
+	$("#custom").css("text-decoration", textDecoration);
+	$("#custom").css("direction", direction);
+	$("#custom").css("text-transform", textTransform);
+	$("#custom").css("text-decoration-thickness", "from-font");
+	$('#custom').css("font-variant", fakeSC);
+	$('#custom').css("font-feature-settings", codeCSS3);
+	$('#custom').css("-moz-font-feature-settings", codeCSS3);
+	$('#custom').css("-webkit-font-feature-settings", codeCSS3);
 	
-};	
+	var fallbackfont = document.getElementById("fallbackfont");
+	fallbackfont.value = (document.getElementById("unicodebmp").checked ? 'Unicode BMP Fallback' : 'Adobe Blank');
+	var fontFamily = $('#custom').css('font-family').split(',');
+	if (fontFamily.length > 1) {
+		fontFamily[1] = fallbackfont.value;
+		$('#custom').css('font-family', fontFamily.join(','));
+	}
+
+};
