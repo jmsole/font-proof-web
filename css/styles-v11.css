@@ -3,68 +3,454 @@
    Notes:
    A little wider than v9 and v10
    to make more room in the menu bar for the new african tab
-   
+
 */
 
 /*----------------------------------------------------------------------------------------------------
   General Reset
   ---------------------------------------------------------------------------------------------------*/
-body { background: white; color: black; margin: 0; padding: 0; }
-section { display: block; float: left; margin: 0; padding: 0; width: 100%; }
-h1, h2, h3, h4 { font-family: arial, sans-serif; font-weight: normal; }
-ol { padding-left: 0px; list-style-position: inside; }
+
+:root {
+
+/* Primary: Rubylicious */
+--primary-100: #FFF2F4;
+--primary-200: #FEBAC7;
+--primary-300: #FB809E;
+--primary-400: #F0467A;
+--primary-500: #DB0F5A;
+--primary-600: #AE054D;
+--primary-700: #81013F;
+--primary-800: #54002D;
+--primary-900: #260017;
+
+
+/* Accent: Megaman Helmet */
+--accent-100: #F2F4FF;
+--accent-200: #B6C4FF;
+--accent-300: #799AFE;
+--accent-400: #3C77FD;
+--accent-500: #005CFA;
+--accent-600: #0054C5;
+--accent-700: #004690;
+--accent-800: #00315B;
+--accent-900: #001726;
+
+/* Neutral */
+--neutral-100: #FAFAFC;
+--neutral-200: #EAEBEE;
+--neutral-300: #DBDCE0;
+--neutral-400: #CCCED2;
+--neutral-500: #BCBFC4;
+--neutral-600: #94989D;
+--neutral-700: #6D7175;
+--neutral-800: #474B4E;
+--neutral-900: #222526;
+
+
+}
+
+body {
+  background: var(--neutral-100);
+  color: black;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@font-face {
+    font-family: 'Unicode BMP Fallback';
+    src: url('UnicodeBMPFallback.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Adobe Blank";
+    src: url(AdobeBlank.otf) format("opentype");
+}
+
+
+/* section {
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+} */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: normal;
+}
+
+ol {
+  padding-left: 0px;
+  list-style-position: inside;
+}
 
 /*----------------------------------------------------------------------------------------------------
   Top
   ---------------------------------------------------------------------------------------------------*/
-#top { width: 1020px; margin: 0 20px; padding: 0px; }
-header { margin: 0; padding: 0; background: #cccccc;}
-header h1 { margin: 0; padding: 40px 20px; }
+#top {
+  /* min-width: 1020px; */
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  padding: 0px;
+}
 
+input[type='file']{
+  display: none;
+}
+
+header {
+  margin: 0;
+  padding: 0;
+}
+
+header h1 {
+  margin: 0;
+  padding: 20px 20px;
+  background: var(--primary-300);
+  color: var(--neutral-100);
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+header h1:hover {
+  background-color: var(--primary-400);
+  transition: background-color 0.3s ease;
+  color: var(--neutral-100);
+}
 /* Font Selection */
-#fonts { width: 940px;margin: 0;  padding: 0 10px; top: 0px; left: 20px; position: fixed; background: #F8F8F8; border-bottom: 1px solid #ccc; }
-#fonts li { display: inline; list-style: none; margin: 0 16px 0 0; padding: 0; cursor: pointer; }
-#fonts li.active { background: #CCCCCC; }
+#fonts {
+  width: calc(100% - 60px);
+  margin: 0;
+  padding: 0 10px;
+  top: 0px;
+  left: 20px;
+  position: sticky;
+  background: var(--primary-200);
+  /* height: 24px; */
+  border-radius: 8px;
+  overflow:visible;
+}
 
-/* OT Features Panel */
-#toggleotfeatures { float: left; width: 980px; margin: 0 20px; padding: 12px 20px; background-color: #bababa; font: normal 13px/13px "Lucida Grande","Lucida Sans Unicode", arial, sans-serif !important; }
-#toggleotfeatures a { color: #fff; text-decoration:none; text-shadow: 1px 1px 2px black; }
-#editions { float: right; }
+#fonts li {
+  display: inline;
+  list-style: none;
+  margin: 0 4px 0 0;
+  padding: 0px 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
 
-/* OT Features Menu */
-#otfeatures { float: left; width: 1020px; margin: 0px 20px 10px; padding: 0px 0px 8px; background: #bababa; font: normal 13px/13px "Lucida Grande","Lucida Sans Unicode", arial, sans-serif !important; }
-#otfeatures table td { padding: 4px 20px;}
-#csscode { margin: 0; padding: 0; font: normal 10px/10px "Lucida Grande","Lucida Sans Unicode", arial, sans-serif; }
+#fonts li.active {
+  background: var(--accent-500);
+  color: var(--neutral-100);
+  transition: background 0.2s ease;
+}
+
+#fonts li:hover {
+  background: var(--primary-400);
+  transition: background 0.2s ease;
+}
+
+#controlcontainer {
+  top: 19px;
+  position: sticky;
+  width: 100%;
+}
+
+#toggleotfeatures {
+  display: block;
+  width: calc(100% - 80px);
+  float: left;
+  /* width: calc(100% - 80px); */
+  margin: 0 20px;
+  padding: 12px 20px;
+  background-color: var(--neutral-100);
+  color: var(--accent-400);
+  font: normal 13px/13px -apple-system, BlinkMacSystemFont, sans-serif !important;
+  border: 1px solid var(--accent-500);
+  border-radius: 8px;
+}
+
+#toggleotfeatures a {
+  color: var(--primary-500);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#toggleotfeatures a:hover {
+  color: var(--primary-600);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#otfeatures {
+  display: block;
+  width: calc(100% - 40px);
+  float: left;
+  /* width: 1020px; */
+  margin: -1px 20px 0px;
+  padding: 0px 0px 8px;
+  background-color: var(--neutral-100);
+  color: black;
+  font: normal 13px/13px -apple-system, BlinkMacSystemFont, sans-serif !important;
+  border-radius: 8px;
+  border: 1px solid var(--accent-500);
+}
+
+#otvariations {
+  display: block;
+  width: calc(100% - 80px);
+  float: left;
+  /* width: 1020px; */
+  margin: -1px 20px 10px;
+  padding: 4px 20px;
+  font-feature-settings: "tnum" on;
+  background-color: var(--neutral-100);
+  color: black;
+  font: normal 13px/13px -apple-system, BlinkMacSystemFont, sans-serif !important;
+  border-radius: 8px;
+  border: 1px solid var(--accent-500);
+}
+
+#vartitle {
+  padding: 8px 0px ;
+  color: var(--primary-500) !important;
+  font-weight: bold;
+}
+
+#sliderlabels {
+  justify-content: space-between;
+  width: 50vw;
+  padding: 0 5px 8px 0 !important;
+  display: flex;
+  font-size: 10px;
+  color: var(--accent-400) !important;
+}
+
+#varaxes {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#varaxes div{
+  padding-bottom: 4px;
+  color: var(--accent-500);
+  font-weight: bold;
+}
+
+#labeldiv {
+}
+
+#sliderdiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#varaxes input[type="text"] {
+  margin-left: 10px;
+  color: var(--accent-600);
+  font-size: 13px;
+  width: 40px;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid var(--accent-500);
+}
+
+#varaxes input[type="range"] {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  width: 50vw;
+  cursor: pointer;
+  outline: none;
+  height: 15px;
+  background: var(--primary-200);
+  border-radius: 12px;
+}
+
+/* Track: webkit browsers */
+#varaxes input[type="range"]::-webkit-slider-runnable-track {
+  height: 15px;
+  background: var(--primary-200);
+  border-radius: 12px;
+}
+
+/* Track: Mozilla Firefox */
+#varaxes input[type="range"]::-moz-range-track {
+  height: 15px;
+  background: var(--primary-200);
+  border-radius: 12px;
+}
+
+#varaxes input[type="range"]::-webkit-slider-thumb {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  height: 15px;
+  width: 15px;
+  background-color: var(--accent-400);
+  border-radius: 50%;
+  /* border: 2px solid #f50; */
+  transition: .2s ease-in-out;
+}
+
+#varaxes input[type="range"]::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  background-color: var(--accent-400);
+  border-radius: 50%;
+  /* border: 1px solid #f50; */
+  transition: .2s ease-in-out;
+}
+
+#varaxes input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 10px color-mix(in srgb, var(--primary-300) 40%, transparent);
+}
+#varaxes input[type="range"]:active::-webkit-slider-thumb {
+  box-shadow: 0 0 0 13px color-mix(in srgb, var(--primary-500) 40%, transparent);
+}
+#varaxes input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 13px color-mix(in srgb, var(--primary-500) 40%, transparent);
+}
+
+/* Hover, active & focus Thumb: Firfox */
+
+#varaxes input[type="range"]::-moz-range-thumb:hover {
+  box-shadow: 0 0 0 10px color-mix(in srgb, var(--primary-300) 40%, transparent);
+}
+#varaxes input[type="range"]:active::-moz-range-thumb {
+  box-shadow: 0 0 0 13px color-mix(in srgb, var(--primary-500) 40%, transparent);
+}
+#varaxes input[type="range"]:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 13px color-mix(in srgb, var(--primary-500) 40%, transparent);
+}
+
+#otfeatures table td {
+  padding: 4px 20px;
+  font-feature-settings: "tnum" on;
+}
+
+#featitles {
+  color: var(--primary-500);
+  font-weight: bold;
+}
+
+#instances{
+  width: 300px;
+  border: 1px solid var(--accent-500);
+  padding-left: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  height: 26px;
+  color: var(--accent-500);
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
+}
+
+#csscode {
+  margin: 0;
+  padding: 0;
+  font: normal 10px/10px -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
 
 /*-----------------------------------------------------------------------------------------------------
   Content
   ---------------------------------------------------------------------------------------------------*/
-#custom { margin: 0; padding: 0; }
-#custom p { margin: 0; padding: 0; }
-#custom p.sizelabel { font: normal 10px/10px "Lucida Grande","Lucida Sans Unicode", arial, sans-serif !important; color: #666; }
+#custom {
+  margin: 0;
+  padding: 0;
+}
+
+#custom p {
+  margin: 0;
+  padding: 0;
+}
+
+#custom p.sizelabel {
+  font: normal 10px/10px -apple-system, BlinkMacSystemFont, sans-serif !important;
+  color: var(--neutral-600);
+}
 
 /* Navigation */
-ul.tabNavigation { width: 1020px; overflow: hidden;	list-style: none; margin: 2px 20px; padding: 0; font: normal 15px/15px "Lucida Grande","Lucida Sans Unicode", arial, sans-serif !important; }
-ul.tabNavigation li { float: left; padding: 0; margin: 0; }
-ul.tabNavigation li a { display: block; padding: 7px 5px; margin: 2px 4px 2px 0px; color: #000; text-decoration: none; background-color: #ccc; }
-ul.tabNavigation li a.selected, ul.tabNavigation li a:hover { color: #fff; background-color: #333; }
-ul.tabNavigation li a:focus { outline: 0; }
+ul.tabNavigation {
+  /* width: 100%; */
+  overflow: hidden;
+  list-style: none;
+  margin: 0px 20px;
+  padding: 0;
+  font: normal 14px/14px -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+ul.tabNavigation li {
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+ul.tabNavigation li a {
+  display: block;
+  padding: 7px 10px;
+  margin: 4px 2px 2px 0px;
+  color: var(--neutral-900);
+  text-decoration: none;
+  background-color: var(--neutral-100);
+  border-radius: 6px;
+  border: 1px solid var(--accent-500);
+}
+
+ul.tabNavigation li a.selected {
+  color: var(--neutral-100);
+  background-color: var(--accent-500);
+  transition: background-color 0.2s ease;
+}
+ul.tabNavigation li a:hover {
+  background-color: var(--accent-200);
+  color: var(--neutral-900);
+  transition: background-color 0.2s ease;
+}
+ul.tabNavigation li a:focus {
+  outline: 0;
+}
+
+ul.tabNavigation li a:focus {
+  outline: 0;
+}
 
 /* Default Styles for all tabs */
-div.tabs > div { padding: 20px; }
+div.tabs>div {
+  padding: 20px;
+}
 
 /* Is this rule still used? If no longer used then it can be removed... */
-div.tabs > div h2 { margin-top: 0; } 
+div.tabs>div h2 {
+  margin-top: 0;
+}
 
 /* Rules for changing case*/
 .lowercase {
-	text-transform: lowercase;
+  text-transform: lowercase;
 }
+
 .capitalized {
-	text-transform: capitalize;
+  text-transform: capitalize;
 }
+
 .uppercase {
-	text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 /*-----------------------------------------------------------------------------------------------------
@@ -72,38 +458,239 @@ div.tabs > div h2 { margin-top: 0; }
   - If the rule is used in multiple tabs, put it here
   - If the rule is only used in one specific tab and nowhere else, put it inline into the tab html
   ---------------------------------------------------------------------------------------------------*/
-  
-/* Used in Text previews in multiple Tabs */  
-.textsettingCol1 { width: 460px; float: left; }
-.textsettingCol2 { width: 460px; float: right; }
+
+/* Used in Text previews in multiple Tabs */
+.textsettingCol1 {
+  width: 460px;
+  float: left;
+}
+
+.textsettingCol2 {
+  width: 460px;
+  float: right;
+}
 
 /* Used for the Unicode Tables and Unicode Lists */
-.bigslot { font-size: 50px; }
+.bigslot {
+  font-size: 50px;
+}
 
 /* Used for the Layout tabs */
 .multicolumn3 {
-	-moz-column-count: 3;
-	-moz-column-gap: 20px;
-	-webkit-column-count: 3;
-	-webkit-column-gap: 20px;
-	column-count: 3;
-	column-gap: 20px;
+  -moz-column-count: 3;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 20px;
+  column-count: 3;
+  column-gap: 20px;
 }
 
 /* 100 pixel ruler background */
 .ruler100pixels {
-	background: #ffffff url('../images/100pixels.png') repeat-x left top;
+  background: #ffffff url('../images/100pixels.png') repeat-x left top;
 }
 
-/* This is only used in the "Ruder" tab, should be moved to inline css into the ruder.php include file */  
-#ruder td { font-size: 32px; line-height: 1; margin: 0; padding: 4px; }
+/* This is only used in the "Ruder" tab, should be moved to inline css into the ruder.php include file */
+#ruder td {
+  font-size: 32px;
+  line-height: 1;
+  margin: 0;
+  padding: 4px;
+}
 
-/* This is only used in the "Ngrams" tab, should be moved to inline css into the ngrams.php include file */  
-#ngrams td { font-size: 32px; line-height: 1.4; margin: 0; padding: 4px; }
+/* This is only used in the "Ngrams" tab, should be moved to inline css into the ngrams.php include file */
+#ngrams td {
+  font-size: 32px;
+  line-height: 1.4;
+  margin: 0;
+  padding: 4px;
+}
 
 /*-----------------------------------------------------------------------------------------------------
   Footer
   ---------------------------------------------------------------------------------------------------*/
-#footer { padding: 20px; width: 980px; }
-#footer p { color: #666;  font-family: "Lucida Grande","Lucida Sans Unicode", arial, sans-serif !important;  font-size: 13px;  line-height: 1.5em;  font-style: normal; margin: 0; }
-#footer p a { color: #666; }
+#footer {
+  padding: 20px;
+  width: 980px;
+}
+
+#footer p {
+  color: var(--neutral-500);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 10px;
+  line-height: 1.1em;
+  font-style: normal;
+  margin: 0;
+}
+
+#footer p a {
+  color: var(--neutral-500);
+}
+
+.metrics-box mark {
+  background-color: color-mix(in srgb, var(--primary-300) 40%, transparent);
+  width: 100%;
+}
+
+.metrics-box {
+  z-index: 0;
+}
+
+input[id="text-input-metrics"] {
+  width: 300px;
+  font-family:inherit;
+  border: 1px solid var(--accent-500);
+  border-radius: 4px;
+  font-size: 24px;
+}
+
+button[id="text-button-metrics"] {
+  width: 300px;
+  font-family:inherit;
+  font-size: 24px;
+}
+
+h4 {
+  font: bold 16px/16px -apple-system, BlinkMacSystemFont, sans-serif !important;
+  color: var(--primary-400);
+}
+
+.metricsword {
+  font-size: 140px;
+  font-display: block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background: color-mix(in srgb, var(--primary-200) 20%, transparent);
+}
+
+.metrics-lines,
+.heights {
+  font-size: 140px;
+}
+
+.metrics-top > .heights {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid;
+  vertical-align: top;
+  border-color: var(--primary-500);
+  border-bottom-style: dashed;
+}
+
+.cap-height > .heights {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid;
+  vertical-align: baseline;
+  margin-bottom: 1cap;
+  border-color: var(--accent-500);
+}
+
+.x-height > .heights {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid;
+  vertical-align: baseline;
+  margin-bottom: 1ex;
+  border-color: var(--accent-500);
+}
+
+.baseline > .heights {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid;
+  vertical-align: baseline;
+  margin-bottom: -1px;
+  border-color: var(--accent-500);
+}
+
+.metrics-bottom > .heights {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid;
+  vertical-align: bottom;
+  border-color: var(--primary-500);
+  border-bottom-style: dashed;
+}
+
+.metric {
+  position: absolute;
+  z-index: -10;
+  width: 100%;
+  top: 0px;
+}
+
+.metrics-box {
+  position: relative;
+  width: 100%;
+  text-align: left;
+}
+
+.metrics-lines-paragraph,
+.metricsparagraph {
+  width: 900px;
+  font-size: 24px;
+  font-display: block;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.heightsparagraph {
+  font-size: 24px;
+  width: 900px;
+}
+
+.metrics-top > .heightsparagraph {
+  display: inline-block;
+  width: 900px;
+  height: 100%;
+  border-bottom: 0.5px solid;
+  vertical-align: top;
+  border-color: var(--primary-500);
+  border-bottom-style: dashed;
+}
+
+.cap-height > .heightsparagraph {
+  display: inline-block;
+  width: 900px;
+  height: 100%;
+  border-bottom: 0.5px solid;
+  vertical-align: baseline;
+  margin-bottom: 1cap;
+  border-color: var(--accent-500);
+}
+
+.x-height > .heightsparagraph {
+  display: inline-block;
+  width: 900px;
+  height: 100%;
+  border-bottom: 0.5px solid;
+  vertical-align: baseline;
+  margin-bottom: 1ex;
+  border-color: var(--accent-500);
+}
+
+.baseline > .heightsparagraph {
+  display: inline-block;
+  width: 900px;
+  height: 100%;
+  border-bottom: 0.5px solid;
+  vertical-align: baseline;
+  margin-bottom: -1px;
+  border-color: var(--accent-500);
+}
+
+.metrics-bottom > .heightsparagraph {
+  display: inline-block;
+  width: 900px;
+  height: 100%;
+  border-bottom: 0.5px solid;
+  vertical-align: bottom;
+  border-color: var(--primary-500);
+  border-bottom-style: dashed;
+}

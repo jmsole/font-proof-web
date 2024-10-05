@@ -15,6 +15,11 @@
 		    $("#showhide").text($(this).is(':visible') ? "Hide OpenType Features" : "OpenType Features");
 		  });
     });
+    $('#showhide-var').click(function () {
+        $('#otvariations').slideToggle("fast", function() {
+            $("#showhide-var").text($(this).is(':visible') ? "Hide Variable" : "Variable");
+          });
+    });
 
     // OT Features initial Run
     refreshFeatures();
