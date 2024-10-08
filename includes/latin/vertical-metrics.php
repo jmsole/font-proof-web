@@ -1,7 +1,7 @@
 <h4>Vertical Metrics</h4>
 
 <div class="metrics-box">
-  <div class="metricsword"><p contenteditable="true"><mark>H</mark>zbp7HÅȘ</p></div>
+  <div class="metricsword"><p contenteditable="true"><mark>H</mark>zbp7HÅǺẮȘÇḀ</p></div>
   <div class="metric metrics-top"><span class="metrics-lines"></span>
     <div class="heights"></div>
   </div>
@@ -43,8 +43,8 @@
 
 <h4>Input and button samples</h4>
 <form>
-  <input type="text" id="text-input-metrics" name="text-input" value="Hzbp7HÅȘ">
+  <input type="text" id="text-input-metrics" name="text-input" value="Hzbp7HÅǺẮȘÇḀ">
   <br>
   <br>
-  <button id="text-button-metrics" contenteditable="true" onclick="return false">Hzbp7HÅȘ</button><br>
+  <button id="text-button-metrics" contenteditable="true" onclick="return false">Hzbp7HÅǺẮȘÇḀ</button><br>
 </form>

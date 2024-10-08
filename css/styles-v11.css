@@ -532,6 +532,10 @@ div.tabs>div h2 {
   width: 100%;
 }
 
+.metrics-box {
+  z-index: 0;
+}
+
 input[id="text-input-metrics"] {
   width: 300px;
   font-family:inherit;
@@ -552,7 +556,7 @@ h4 {
 }
 
 .metricsword {
-  font-size: 180px;
+  font-size: 140px;
   font-display: block;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -561,7 +565,7 @@ h4 {
 
 .metrics-lines,
 .heights {
-  font-size: 180px;
+  font-size: 140px;
 }
 
 .metrics-top > .heights {
@@ -616,7 +620,7 @@ h4 {
 
 .metric {
   position: absolute;
-  z-index: -1;
+  z-index: -10;
   width: 100%;
   top: 0px;
 }
