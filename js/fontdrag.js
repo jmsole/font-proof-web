@@ -1,7 +1,7 @@
 /*
 * font dragr v1.5
 * http://www.thecssninja.com/javascript/font-dragr
-* Copyright (c) 2010 Ryan Seddon 
+* Copyright (c) 2010 Ryan Seddon
 * released under the MIT License
 */
 var TCNDDF = TCNDDF || {};
@@ -92,13 +92,13 @@ var reader = new FileReader();
 reader.name = name;
 reader.size = size;
 
-/* 
+/*
 Chrome 6 dev can't do DOM2 event based listeners on the FileReader object so fallback to DOM0
 http://code.google.com/p/chromium/issues/detail?id=48367
 reader.addEventListener("loadend", TCNDDF.buildFontListItem, false);
 */
 reader.onloadend = function (event) { TCNDDF.buildFontListItem(event); }
-reader.readAsDataURL(file); 
+reader.readAsDataURL(file);
 
 
 // var otTables = font.opentype.tables;
@@ -173,44 +173,46 @@ TCNDDF.updateActiveFont = function (target) {
 		dropListItem[i].className = "";
 	}
 	target.className = "active";
-	
+
 	// window.currentFont = getFontFamily;
-	
+
 	// Custom Addition by Andras Larsen
 	document.title = displayContainer.style.fontFamily;
-	
+
 	const myFont = new Font(getFontFamily, {skipStyleSheet: true});
 	myFont.src = fontList.get(getFontFamily)
-	
+
 	myFont.onerror = evt => console.error(evt);
 	myFont.onload = evt => doSomeFontThings(evt);
-	
+
 	function doSomeFontThings(evt) {
 	var font = evt.detail.font;
 	var otTables = font.opentype.tables;
 	var fontname = otTables.name.get(1);
-	
+
 	const GSUB = otTables.GSUB;
 	const namet = otTables.name;
-	
+
 	var table = GSUB.getLangSysTable("DFLT", "dflt");
-	
+
 	for (var i = 1; i < 20; i +=1) {
 		var ipad = String(i).padStart(2, '0');
 		// console.log(ipad);
 		document.getElementById('ss' + ipad + 'label').textContent='ss' + ipad;
 	}
-	
+
 	GSUB.getFeatures(table).forEach(feature => {
 		if (feature.featureTag.startsWith(`ss`)) {
 			const params = feature.getFeatureParams();
 			var featag = feature.featureTag
-			if (namet.get(params.UINameID)) {
-				var feaname = namet.get(params.UINameID);
-				document.getElementById(featag + 'label').textContent=feaname;
-				// console.log(feature.featureTag, namet.get(params.UINameID));
-			} else {
-				document.getElementById(featag + 'label').textContent=featag;
+			if (params) {
+				if (namet.get(params.UINameID)) {
+					var feaname = namet.get(params.UINameID);
+					document.getElementById(featag + 'label').textContent=feaname;
+					// console.log(feature.featureTag, namet.get(params.UINameID));
+				} else {
+					document.getElementById(featag + 'label').textContent=featag;
+				};
 			};
 		}
 	});
@@ -220,14 +222,14 @@ TCNDDF.updateActiveFont = function (target) {
 		var cssArr = [];
 		varaxes.innerHTML = '';
 		var axesInfo = [];
-		
+
 		axes.forEach((axis, a) => {
 		var axisName = axis.tag;
 		var axisProperName = font.opentype.tables.name.get(axis.axisNameID)
 		var min = axis.minValue;
 		var max = axis.maxValue;
 		var defaultValue = axis.defaultValue;
-		
+
 		//create range sliders according to min/max axes values
 		var axisDiv = document.createElement('div');
 		var labelDiv = document.createElement('div');
@@ -236,10 +238,10 @@ TCNDDF.updateActiveFont = function (target) {
 		var datalistSlider = document.createElement('div');
 		var rangSlider = document.createElement('input');
 		var outSlider = document.createElement('input');
-		
+
 		labelDiv.setAttribute('id', 'labeldiv');
 		sliderDiv.setAttribute('id', 'sliderdiv');
-		
+
 		datalistSlider.setAttribute('id', 'sliderlabels');
 		var datalistMin = document.createElement('span');
 		datalistMin.textContent = min;
@@ -276,11 +278,11 @@ TCNDDF.updateActiveFont = function (target) {
 		axisDiv.appendChild(datalistSlider);
 		datalistSlider.appendChild(datalistMin);
 		datalistSlider.appendChild(datalistMax);
-		
+
 		// set default style
 		cssArr.push(`"${axisName}" ${defaultValue}`);
 		axesInfo.push(`name:"${axisName}"; min:${min}; max:${max}; default:${defaultValue};`);
-	
+
 		// update values by range sliders
 		rangSlider.addEventListener('input', function(e) {
 			cssArr[a] = `"${axisName}" ${e.currentTarget.value}`;
@@ -291,7 +293,7 @@ TCNDDF.updateActiveFont = function (target) {
 			displayContainer.style.fontVariationSettings = cssArr.join(', ');
 		})
 		})
-		
+
 		var instances = otTables.fvar.instances;
 		var instanceInfo = new Map();
 		instances.forEach((instance, a)=> {
@@ -307,20 +309,20 @@ TCNDDF.updateActiveFont = function (target) {
 		// console.log(instanceName, instanceCoords);
 		});
 		// console.log(instanceInfo);
-		
+
 		var instanceDiv = document.createElement('div');
 		instanceDiv.setAttribute('id', 'instancediv');
-		
+
 		var instanceTitle= document.createElement('div');
 		instanceTitle.setAttribute('id', 'vartitle');
 		instanceTitle.textContent = 'Instance Selection';
-		
+
 		var instanceSelector = document.createElement('select');
 		instanceSelector.setAttribute('id', 'instances');
 		varaxes.appendChild(instanceDiv);
 		instanceDiv.appendChild(instanceTitle);
 		instanceDiv.appendChild(instanceSelector);
-		
+
 		for (let [k,v] of instanceInfo.entries()) {
 			var instanceOpt = document.createElement('option')
 			instanceOpt.setAttribute('value', k);
@@ -331,9 +333,9 @@ TCNDDF.updateActiveFont = function (target) {
 			instanceSelector.appendChild(instanceOpt);
 			// console.log(k, v);
 		};
-		
+
 		var selectedInstance = document.getElementById('instances');
-		
+
 		function onChange() {
 			var instval = selectedInstance.value;
 			var selopt = selectedInstance.options[selectedInstance.selectedIndex];
@@ -350,7 +352,7 @@ TCNDDF.updateActiveFont = function (target) {
 		selectedInstance.onchange = onChange;
 		onChange;
 		// console.log(axesInfo.join('\n'))
-		
+
 		//var fontVariationOptions = `font-variation-settings: ${cssArr.join(', ')}`;
 		displayContainer.style.fontVariationSettings = cssArr.join(', ');
 		//console.log(fontVariationOptions)
@@ -359,7 +361,7 @@ TCNDDF.updateActiveFont = function (target) {
 			var noVar = document.createElement('h3');
 			varaxes.appendChild(noVar);
 			noVar.textContent = "Not a variable font!";
-			
+
 		}
 	}
 };
