@@ -102,11 +102,15 @@ function refreshFeatures() {
 	$('#custom').css("-webkit-font-feature-settings", codeCSS3);
 	
 	var fallbackfont = document.getElementById("fallbackfont");
-	fallbackfont.value = (document.getElementById("unicodebmp").checked ? 'Unicode BMP Fallback' : 'Adobe Blank');
+	fallbackfont.value = (document.getElementById("systemfallback").checked ? '' : 'Adobe Blank');
 	var fontFamily = $('#custom').css('font-family').split(',');
 	if (fontFamily.length > 1) {
-		fontFamily[1] = fallbackfont.value;
-		$('#custom').css('font-family', fontFamily.join(','));
+		var primaryFont = fontFamily[0].trim();
+		if (fallbackfont.value) {
+			$('#custom').css('font-family', primaryFont + ',' + fallbackfont.value);
+		} else {
+			$('#custom').css('font-family', primaryFont);
+		}
 	}
 
 };

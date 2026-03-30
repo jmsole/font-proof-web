@@ -60,12 +60,6 @@ body {
 }
 
 @font-face {
-    font-family: 'Unicode BMP Fallback';
-    src: url('UnicodeBMPFallback.ttf');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
     font-family: "Adobe Blank";
     src: url(AdobeBlank.otf) format("opentype");
 }
@@ -221,13 +215,13 @@ header h1:hover {
   border: 1px solid var(--accent-500);
 }
 
-#vartitle {
+.vartitle {
   padding: 8px 0px ;
   color: var(--primary-500) !important;
   font-weight: bold;
 }
 
-#sliderlabels {
+.sliderlabels {
   justify-content: space-between;
   width: 50vw;
   padding: 0 5px 8px 0 !important;
@@ -248,10 +242,10 @@ header h1:hover {
   font-weight: bold;
 }
 
-#labeldiv {
+.labeldiv {
 }
 
-#sliderdiv {
+.sliderdiv {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -343,7 +337,7 @@ header h1:hover {
   font-feature-settings: "tnum" on;
 }
 
-#featitles {
+.featitles {
   color: var(--primary-500);
   font-weight: bold;
 }
@@ -461,12 +455,12 @@ div.tabs>div h2 {
 
 /* Used in Text previews in multiple Tabs */
 .textsettingCol1 {
-  width: 460px;
+  width: 48%;
   float: left;
 }
 
 .textsettingCol2 {
-  width: 460px;
+  width: 48%;
   float: right;
 }
 
@@ -557,7 +551,6 @@ h4 {
 
 .metricsword {
   font-size: 140px;
-  font-display: block;
   word-wrap: break-word;
   overflow-wrap: break-word;
   background: color-mix(in srgb, var(--primary-200) 20%, transparent);
@@ -633,21 +626,23 @@ h4 {
 
 .metrics-lines-paragraph,
 .metricsparagraph {
-  width: 900px;
+  max-width: 900px;
+  width: 100%;
   font-size: 24px;
-  font-display: block;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
 .heightsparagraph {
   font-size: 24px;
-  width: 900px;
+  max-width: 900px;
+  width: 100%;
 }
 
 .metrics-top > .heightsparagraph {
   display: inline-block;
-  width: 900px;
+  max-width: 900px;
+  width: 100%;
   height: 100%;
   border-bottom: 0.5px solid;
   vertical-align: top;
@@ -657,7 +652,8 @@ h4 {
 
 .cap-height > .heightsparagraph {
   display: inline-block;
-  width: 900px;
+  max-width: 900px;
+  width: 100%;
   height: 100%;
   border-bottom: 0.5px solid;
   vertical-align: baseline;
@@ -667,7 +663,8 @@ h4 {
 
 .x-height > .heightsparagraph {
   display: inline-block;
-  width: 900px;
+  max-width: 900px;
+  width: 100%;
   height: 100%;
   border-bottom: 0.5px solid;
   vertical-align: baseline;
@@ -677,7 +674,8 @@ h4 {
 
 .baseline > .heightsparagraph {
   display: inline-block;
-  width: 900px;
+  max-width: 900px;
+  width: 100%;
   height: 100%;
   border-bottom: 0.5px solid;
   vertical-align: baseline;
@@ -687,7 +685,8 @@ h4 {
 
 .metrics-bottom > .heightsparagraph {
   display: inline-block;
-  width: 900px;
+  max-width: 900px;
+  width: 100%;
   height: 100%;
   border-bottom: 0.5px solid;
   vertical-align: bottom;

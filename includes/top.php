@@ -15,7 +15,7 @@
 	<table width="100%">
 		<tr>
 			<td valign="top" width="25%">
-				<label id="featitles">Always-on</label>
+				<label class="featitles">Always-on</label>
 				<br/>
 				<input type="checkbox" id="kern" onchange="refreshFeatures()" checked>OpenType Kerning</input><br/>
 				<input type="checkbox" id="liga" checked onchange="refreshFeatures()">Standard Ligatures</input><br/>
@@ -28,7 +28,7 @@
 				<input type="checkbox" id="mkmk" onchange="refreshFeatures()">Mark-to-mark Positioning</input>
 			</td>
 			<td valign="top" width="25%">
-				<label id="featitles">Casing features</label>
+				<label class="featitles">Casing features</label>
 				<br/>
 				<input type="radio" name="smcp" checked onchange="refreshFeatures()">SmallCaps Off</input><br/>
 				<input type="radio" id="fake-smcp" name="smcp" onchange="refreshFeatures()">Fake SmallCaps</input><br/>
@@ -36,14 +36,15 @@
 				<input type="checkbox" id="c2sc" onchange="refreshFeatures()">Capitals to Small Caps</input><br/>
 				<input type="checkbox" id="case" onchange="refreshFeatures()">Case Sensitive Forms</input><br/>
 				<br/>
-				<label id="featitles">Other manual features</label>
+				<label class="featitles">Other manual features</label>
 				<br/>
 				<input type="checkbox" id="dlig" onchange="refreshFeatures()">Discretionary Ligatures</input><br/>
+				<input type="checkbox" id="hlig" onchange="refreshFeatures()">Historical Ligatures</input><br/>
 				<input type="checkbox" id="swsh" onchange="refreshFeatures()">Swashes</input><br/>
-				<input type="checkbox" id="salt" onchange="refreshFeatures()">Stilistic Alternates</input><br/>
+				<input type="checkbox" id="salt" onchange="refreshFeatures()">Stylistic Alternates</input><br/>
 			</td>
 			<td width="12.5%" valign="top">
-			<label id="featitles">Stylistic Sets</label>
+			<label class="featitles">Stylistic Sets</label>
 			<br/>
 				<input type="checkbox" id="ss01" onchange="refreshFeatures()"></input><label id="ss01label" for="ss01">ss01</label> <br/> 
 				<input type="checkbox" id="ss02" onchange="refreshFeatures()"></input><label id="ss02label" for="ss02">ss02</label> <br/> 
@@ -77,9 +78,8 @@
 			</td>
 		</tr>
 		<tr>
-			<br/>
 			<td valign="top" width="25%">
-				<label id="featitles">Numeral features</label>
+				<label class="featitles">Numeral features</label>
 				<br/>
 				<input type="radio" name="numsty" checked onchange="refreshFeatures()">Default Figures Style</input><br/>
 				<input type="radio" id="lnum" name="numsty" onchange="refreshFeatures()">Lining Figures</input><br/>
@@ -100,7 +100,7 @@
 				<input type="checkbox" id="sinf" onchange="refreshFeatures()">Inferiors</input>			
 			</td>
 			<td valign="top" width="25%" colspan="2">
-				<label id="featitles">CSS transforms</label>
+				<label class="featitles">CSS transforms</label>
 				<br />
 				<label>
 					<input type="checkbox" id="rtl" onchange="refreshFeatures()"/>
@@ -112,8 +112,8 @@
 					<span style="text-transform: uppercase">Transform to all caps</span>
 				</label><br/>
 				<br/>
-				<label id="featitles" for="unicodebmp">Fallback Font</label><br/>
-				<input type="radio" checked id="unicodebmp" name="fallback" onchange="refreshFeatures()">Unicode BMP Fallback Font</input> <br/>
+				<label class="featitles" for="unicodebmp">Fallback Font</label><br/>
+				<input type="radio" checked id="systemfallback" name="fallback" onchange="refreshFeatures()">System Fallback</input> <br/>
 				<input type="radio" id="adobeblank" name="fallback" onchange="refreshFeatures()">Adobe Blank</input> &nbsp;
 				<input id="fallbackfont" type="text" style="display:none" />
 			</td>
@@ -133,7 +133,7 @@
 	</table>
 </div>
 <div id="otvariations" style="display: none;">
-	<div id="vartitle">Variable axes</div>
+	<div class="vartitle">Variable axes</div>
 	<div id="varaxes"></div>
 </div>
 </div>

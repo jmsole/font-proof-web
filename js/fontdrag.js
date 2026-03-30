@@ -31,7 +31,7 @@ dropListing.addEventListener("click", TCNDDF.handleFontChange, false);
 
 /* LocalStorage events */
 if(persistantStorage) {
-displayContainer.addEventListener("keyup", function(){contentStorageTimer = setTimeout("TCNDDF.writeContentEdits('mainContent')",1000);}, false);
+displayContainer.addEventListener("keyup", function(){contentStorageTimer = setTimeout(function(){ TCNDDF.writeContentEdits('mainContent'); }, 1000);}, false);
 displayContainer.addEventListener("keydown", function(){clearTimeout(contentStorageTimer);}, false);
 
 // Restore changed data
@@ -116,6 +116,14 @@ var name = event.target.name,
 size = event.target.size,
 data = event.target.result;
 
+// Deduplicate: append -2, -3 etc. if this name is already loaded
+var baseName = name;
+var counter = 2;
+while (fontList.has(name)) {
+	name = baseName + '-' + counter;
+	counter++;
+}
+
 // Dodgy fork because Chrome 6 dev doesn't add media type to base64 string when a dropped file(s) type isn't known
 // http://code.google.com/p/chromium/issues/detail?id=48368
 var dataURL = data.split("base64");
@@ -146,7 +154,7 @@ dropListing.appendChild(fontPreviewFragment);
 TCNDDF.updateActiveFont(domElements[0]);
 
 var fallbackfont = document.getElementById("fallbackfont").value;
-displayContainer.style.fontFamily = [name, fallbackfont].join(',');
+displayContainer.style.fontFamily = fallbackfont ? [name, fallbackfont].join(',') : name;
 
 };
 
@@ -167,7 +175,7 @@ TCNDDF.updateActiveFont = function (target) {
 	var getFontFamily = target.title,
 	dropListItem = dropListing.getElementsByTagName("li");
 	var fallbackfont = document.getElementById("fallbackfont").value;
-	displayContainer.style.fontFamily = [getFontFamily, fallbackfont].join(',');
+	displayContainer.style.fontFamily = fallbackfont ? [getFontFamily, fallbackfont].join(',') : getFontFamily;
 
 	for(var i=0, len = dropListItem.length; i<len; i++) {
 		dropListItem[i].className = "";
@@ -189,34 +197,44 @@ TCNDDF.updateActiveFont = function (target) {
 	var font = evt.detail.font;
 	var otTables = font.opentype.tables;
 	var fontname = otTables.name.get(1);
-
-	const GSUB = otTables.GSUB;
 	const namet = otTables.name;
 
-	var table = GSUB.getLangSysTable("DFLT", "dflt");
-
+	// Always reset ss labels when a new font is loaded
 	for (var i = 1; i < 20; i +=1) {
 		var ipad = String(i).padStart(2, '0');
-		// console.log(ipad);
 		document.getElementById('ss' + ipad + 'label').textContent='ss' + ipad;
 	}
 
-	GSUB.getFeatures(table).forEach(feature => {
-		if (feature.featureTag.startsWith(`ss`)) {
-			const params = feature.getFeatureParams();
-			var featag = feature.featureTag
-			if (params) {
-				if (namet.get(params.UINameID)) {
-					var feaname = namet.get(params.UINameID);
-					document.getElementById(featag + 'label').textContent=feaname;
-					// console.log(feature.featureTag, namet.get(params.UINameID));
-				} else {
-					document.getElementById(featag + 'label').textContent=featag;
-				};
-			};
+	const GSUB = otTables.GSUB;
+	if (GSUB) {
+		// Try scripts in priority order based on the page's declared preference,
+		// falling back to DFLT if nothing more specific is found.
+		var scriptPriority = (typeof PAGE_SCRIPT_PRIORITY !== 'undefined') ? PAGE_SCRIPT_PRIORITY : ['latn', 'DFLT'];
+		var table = null;
+		for (var s = 0; s < scriptPriority.length; s++) {
+			table = GSUB.getLangSysTable(scriptPriority[s], "dflt");
+			if (table) break;
 		}
-	});
+		if (table) {
+			GSUB.getFeatures(table).forEach(feature => {
+				if (feature.featureTag.startsWith(`ss`)) {
+					const params = feature.getFeatureParams();
+					var featag = feature.featureTag;
+					if (params) {
+						if (namet.get(params.UINameID)) {
+							var feaname = namet.get(params.UINameID);
+							document.getElementById(featag + 'label').textContent=feaname;
+						} else {
+							document.getElementById(featag + 'label').textContent=featag;
+						}
+					}
+				}
+			});
+		}
+	}
+
 	// get variable font axes
+	var varaxes = document.getElementById('varaxes');
 	if (otTables.fvar) {
 		var axes = otTables.fvar.axes;
 		var cssArr = [];
@@ -239,10 +257,10 @@ TCNDDF.updateActiveFont = function (target) {
 		var rangSlider = document.createElement('input');
 		var outSlider = document.createElement('input');
 
-		labelDiv.setAttribute('id', 'labeldiv');
-		sliderDiv.setAttribute('id', 'sliderdiv');
+		labelDiv.setAttribute('class', 'labeldiv');
+		sliderDiv.setAttribute('class', 'sliderdiv');
 
-		datalistSlider.setAttribute('id', 'sliderlabels');
+		datalistSlider.setAttribute('class', 'sliderlabels');
 		var datalistMin = document.createElement('span');
 		datalistMin.textContent = min;
 		var datalistMax = document.createElement('span');
@@ -314,7 +332,7 @@ TCNDDF.updateActiveFont = function (target) {
 		instanceDiv.setAttribute('id', 'instancediv');
 
 		var instanceTitle= document.createElement('div');
-		instanceTitle.setAttribute('id', 'vartitle');
+		instanceTitle.setAttribute('class', 'vartitle');
 		instanceTitle.textContent = 'Instance Selection';
 
 		var instanceSelector = document.createElement('select');
@@ -350,7 +368,7 @@ TCNDDF.updateActiveFont = function (target) {
 			// console.log(instval);
 		};
 		selectedInstance.onchange = onChange;
-		onChange;
+		onChange();
 		// console.log(axesInfo.join('\n'))
 
 		//var fontVariationOptions = `font-variation-settings: ${cssArr.join(', ')}`;
