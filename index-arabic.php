@@ -11,7 +11,8 @@
 <script src="js/inflate.js" defer></script>
 <script src="js/unbrotli.js" defer></script>
 <script type="module" src="js/lib-font.browser.js"></script>
-<script src="js/fontdrag.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/fontdrag-v2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/compare.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/otfeatures-v9.1.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/contentEditable.js" type="text/javascript" charset="utf-8"></script>
 <script src="includes/arabic/constants-arabic.js" type="text/javascript" charset="utf-8"></script>
@@ -44,6 +45,7 @@ $(document).ready(function(){
 		<li><a href="#vocalized">Vocalized Text</a></li>
 		<li><a href="#charset">Character Set</a></li>
 		<li><a href="#kern">Kern</a></li>
+		<li><a href="#compare">Compare</a></li>
 		</ul>
 
 		<!-- Headlines (Content injected via constants.js) -->
@@ -80,6 +82,12 @@ $(document).ready(function(){
 		<!-- Kerning -->
 		<div id="kern">
 		<?php include("includes/arabic/kerning.php"); ?>
+		</div>
+
+		<!-- Compare -->
+		<div lang="ar" id="compare">
+		<?php $compareText = "ابجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ.\nاصبر على حفظ خضر واستشر فطنا، وزج همك في بغداذ منثملا.";
+		include("includes/compare.php"); ?>
 		</div>
 
 	</div><!-- end tabs -->

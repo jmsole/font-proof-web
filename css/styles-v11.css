@@ -134,7 +134,8 @@ header h1:hover {
 }
 
 #fonts li {
-  display: inline;
+  display: inline-block;
+  white-space: nowrap;
   list-style: none;
   margin: 0 4px 0 0;
   padding: 0px 8px;
@@ -152,6 +153,11 @@ header h1:hover {
 #fonts li:hover {
   background: var(--primary-400);
   transition: background 0.2s ease;
+}
+
+#fonts li.dragging,
+.sortchip.dragging {
+  opacity: 0.4;
 }
 
 #controlcontainer {
@@ -184,6 +190,57 @@ header h1:hover {
   color: var(--primary-600);
   text-decoration: none;
   transition: color 0.2s ease;
+}
+
+/* Sort bar (in the nav line) */
+.sortchip {
+  display: inline-block;
+  margin-right: 4px;
+  padding: 1px 2px 1px 6px;
+  color: var(--accent-600);
+  background: var(--accent-100);
+  border-radius: 4px;
+  cursor: grab;
+}
+
+.sortchip button {
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  color: var(--neutral-700);
+  font: inherit;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.sortchip button:hover {
+  color: var(--primary-500);
+}
+
+/* A small "+" chip, laid out like the sort chips so it sits on the text line;
+   an invisible select covers it and opens the menu of sort keys */
+#sortaddchip {
+  position: relative;
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--accent-100);
+  color: var(--primary-500);
+  font-weight: bold;
+}
+
+#sortaddchip:hover {
+  background: var(--accent-200);
+}
+
+#sortadd {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 
 #otfeatures {
@@ -692,4 +749,68 @@ h4 {
   vertical-align: bottom;
   border-color: var(--primary-500);
   border-bottom-style: dashed;
+}
+
+/*----------------------------------------------------------------------------------------------------
+  Compare tab
+  ---------------------------------------------------------------------------------------------------*/
+#comparecontrols,
+.comparelabel {
+  font: normal 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-feature-settings: normal !important;
+  font-variation-settings: normal !important;
+  text-transform: none;
+  text-decoration: none;
+  color: var(--accent-600);
+}
+
+#comparecontrols > div {
+  margin-bottom: 8px;
+}
+
+#comparefonts label {
+  display: inline-block;
+  margin-right: 12px;
+  white-space: nowrap;
+}
+
+#comparesize {
+  width: 50px;
+}
+
+#comparetext {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+#compareoutput {
+  margin-top: 20px;
+}
+
+#compareoutput.columns {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto; /* columns never break inside a word */
+}
+
+.comparecolumn {
+  flex: 1 1 0;
+}
+
+.comparegroup {
+  margin-bottom: 0.5em;
+}
+
+.comparerow {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.comparerow .comparelabel {
+  flex: 0 0 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

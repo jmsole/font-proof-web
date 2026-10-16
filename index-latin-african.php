@@ -11,7 +11,8 @@
 <script src="js/inflate.js" defer></script>
 <script src="js/unbrotli.js" defer></script>
 <script type="module" src="js/lib-font.browser.js"></script>
-<script src="js/fontdrag.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/fontdrag-v2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/compare.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/otfeatures-v9.1.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/init.js" type="text/javascript" charset="utf-8"></script>
 
@@ -29,6 +30,7 @@
 	    <li><a href="#lettering-pri">AfricanPri Lettering</a></li>
 	    <li><a href="#barstroke">Bars & Strokes</a></li>
 	    <li><a href="#placeholder">Tap 2 Placeholder</a></li>
+	    <li><a href="#compare">Compare</a></li>
 	  </ul>
 
 	  <!-- African Lettering -->
@@ -46,6 +48,11 @@
 	  	<?php include("includes/latin-african/placeholder.php"); ?>
 	  </div>
   	  
+
+	  <!-- Compare -->
+	  <div id="compare">
+		<?php include("includes/compare.php"); ?>
+	  </div>
 
 	</div><!-- end tabs -->
 

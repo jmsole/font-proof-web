@@ -11,7 +11,8 @@
 <script src="js/inflate.js" defer></script>
 <script src="js/unbrotli.js" defer></script>
 <script type="module" src="js/lib-font.browser.js"></script>
-<script src="js/fontdrag.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/fontdrag-v2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/compare.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/otfeatures-v9.1.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/init.js" type="text/javascript" charset="utf-8"></script>
 
@@ -53,6 +54,7 @@
 	    <li><a href="#dia_four">Diacritics 4</a></li> 
 	    <li><a href="#locale">Locale</a></li>
 	    <li><a href="#groups">Groups</a></li>
+	    <li><a href="#compare">Compare</a></li>
 	  </ul>
 
 	  <!-- Briem Basic Proof -->
@@ -191,6 +193,11 @@
 	  <div id="groups">
 		<?php include("includes/latin-02/groups.php"); ?>			
 	  </div>
+	  <!-- Compare -->
+	  <div id="compare">
+		<?php include("includes/compare.php"); ?>
+	  </div>
+
 	</div><!-- end tabs -->
 
 </section>

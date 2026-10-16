@@ -11,7 +11,8 @@
 <script src="js/inflate.js" defer></script>
 <script src="js/unbrotli.js" defer></script>
 <script type="module" src="js/lib-font.browser.js"></script>
-<script src="js/fontdrag.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/fontdrag-v2.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/compare.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/otfeatures-v9.1.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/contentEditable.js" type="text/javascript" charset="utf-8"></script>
 <script src="includes/latin/constants-latin.js" type="text/javascript" charset="utf-8"></script>
@@ -50,6 +51,7 @@ $(document).ready(function(){
 	    <li><a href="#diacritics">Diacritics</a></li>
 	    <li><a href="#world">World Scripts</a></li>
 		<li><a href="#vmetrics">Vertical Metrics</a></li>
+		<li><a href="#compare">Compare</a></li>
 	  </ul>
 
 	  <!-- Headlines (Content injected via constants.js) -->
@@ -154,6 +156,11 @@ $(document).ready(function(){
 		<div id="vmetrics">
 			<?php include("includes/latin/vertical-metrics.php"); ?>
 		</div>
+
+	  <!-- Compare -->
+	  <div id="compare">
+		<?php include("includes/compare.php"); ?>
+	  </div>
 
 	</div><!-- end tabs -->
 

@@ -10,6 +10,7 @@
 	<a href="javascript://" id="showhide-var">Variable</a>
 	<!-- Editions nav menu: Latins go first, then all scripts follow alphabetically, then tools, then helper. -->
 	<span id="editions"> | <a href="index.php">Latin 1</a> | <a href="index-arabic.php">Arabic</a> | <a href="index-latin-02.php">Latin 2</a> | <a href="index-latin-african.php">African Latin</a></span>
+	<span id="sortbar"> | Sort: <span id="sortchips"></span><span id="sortaddchip" title="Add a sort criterion">+<select id="sortadd"></select></span></span>
 </div>
 <div id="otfeatures" style="display: none;">
 	<table width="100%">
@@ -21,11 +22,11 @@
 				<input type="checkbox" id="liga" checked onchange="refreshFeatures()">Standard Ligatures</input><br/>
 				<input type="checkbox" id="ccmp" checked onchange="refreshFeatures()">Glyph Composition/Decomposition</input><br/>
 				<input type="checkbox" id="calt" checked onchange="refreshFeatures()">Contextual Alternates</input><br/>
-				<input type="checkbox" id="rlig" onchange="refreshFeatures()">Required Ligatures</input><br/>
-				<input type="checkbox" id="rclt" onchange="refreshFeatures()">Required Contextual Alternates</input><br/>
-				<input type="checkbox" id="rvrn" onchange="refreshFeatures()">Required Variation Alternates</input><br/>
-				<input type="checkbox" id="mark" onchange="refreshFeatures()">Mark Positioning</input><br/>
-				<input type="checkbox" id="mkmk" onchange="refreshFeatures()">Mark-to-mark Positioning</input>
+				<input type="checkbox" id="rlig" checked onchange="refreshFeatures()">Required Ligatures</input><br/>
+				<input type="checkbox" id="rclt" checked onchange="refreshFeatures()">Required Contextual Alternates</input><br/>
+				<input type="checkbox" id="rvrn" checked onchange="refreshFeatures()">Required Variation Alternates</input><br/>
+				<input type="checkbox" id="mark" checked onchange="refreshFeatures()">Mark Positioning</input><br/>
+				<input type="checkbox" id="mkmk" checked onchange="refreshFeatures()">Mark-to-mark Positioning</input>
 			</td>
 			<td valign="top" width="25%">
 				<label class="featitles">Casing features</label>
