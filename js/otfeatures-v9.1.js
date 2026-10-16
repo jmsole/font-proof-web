@@ -102,7 +102,9 @@ function refreshFeatures() {
 	$('#custom').css("-webkit-font-feature-settings", codeCSS3);
 	
 	var fallbackfont = document.getElementById("fallbackfont");
-	fallbackfont.value = (document.getElementById("systemfallback").checked ? '' : 'Adobe Blank');
+	var systemfallback = document.getElementById("systemfallback");
+	if (!fallbackfont || !systemfallback) return;
+	fallbackfont.value = (systemfallback.checked ? '' : 'Adobe Blank');
 	var fontFamily = $('#custom').css('font-family').split(',');
 	if (fontFamily.length > 1) {
 		var primaryFont = fontFamily[0].trim();

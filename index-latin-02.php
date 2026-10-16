@@ -8,9 +8,9 @@
 <link type="text/css" href="css/print-v9.css" rel="stylesheet" media="print" charset="utf-8" />
 <script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 <script>localStorage.clear(); var PAGE_SCRIPT_PRIORITY = ['latn', 'DFLT'];</script>
-<script type="module" src="js/lib-font.browser.js"></script>
 <script src="js/inflate.js" defer></script>
 <script src="js/unbrotli.js" defer></script>
+<script type="module" src="js/lib-font.browser.js"></script>
 <script src="js/fontdrag.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/otfeatures-v9.1.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/init.js" type="text/javascript" charset="utf-8"></script>
