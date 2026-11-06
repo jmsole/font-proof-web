@@ -53,7 +53,7 @@ target.addEventListener("drop", TCNDDF.handleDrop, false);
 document.addEventListener("keydown", TCNDDF.handleFontKey, false);
 
 /* Drag font names to reorder them; drag sort chips to change their priority */
-TCNDDF.makeReorderable(dropListing);
+TCNDDF.makeReorderable(dropListing, TCNDDF.saveListState);
 TCNDDF.makeReorderable(document.getElementById("sortchips"), TCNDDF.readSortChips);
 TCNDDF.setupSortBar();
 
@@ -62,6 +62,9 @@ var controlContainer = document.getElementById("controlcontainer");
 new ResizeObserver(function () {
 controlContainer.style.top = dropListing.offsetHeight + "px";
 }).observe(dropListing);
+
+document.getElementById("clearfonts").addEventListener("click", TCNDDF.clearFonts, false);
+TCNDDF.restoreFonts();
 
 upload.onchange = (evt) => {
 	// console.log('Start upload font');
@@ -126,15 +129,18 @@ reader.readAsDataURL(file);
 };
 
 TCNDDF.buildFontListItem = function (event) {
+TCNDDF.addFont(event.target.name, event.target.size, event.target.result, true);
+};
+
+/* Add a font to the list and the page. Fonts loaded by the user are saved
+   (save) so they survive switching between script pages; restored fonts
+   are added without activating each one in turn (restoring). */
+TCNDDF.addFont = function (name, size, data, save, restoring) {
 domElements = [
 document.createElement('li'),
 document.createElement('span'),
 document.createElement('span')
 ];
-
-var name = event.target.name,
-size = event.target.size,
-data = event.target.result;
 
 // Deduplicate: append -2, -3 etc. if this name is already loaded
 var baseName = name;
@@ -172,12 +178,16 @@ domElements[0].appendChild(domElements[2]);
 fontPreviewFragment.appendChild(domElements[0]);
 
 dropListing.appendChild(fontPreviewFragment);
+document.body.classList.add("hasfonts");
+if (!restoring) {
 TCNDDF.updateActiveFont(domElements[0]);
 
 var fallbackfont = document.getElementById("fallbackfont").value;
 displayContainer.style.fontFamily = fallbackfont ? [name, fallbackfont].join(',') : name;
+}
 
 TCNDDF.readSortInfo(domElements[0], name);
+if (save) TCNDDF.storeFont(name, size, data);
 };
 
 /* Read the values the sort bar uses and re-sort once they're known */
@@ -219,6 +229,7 @@ if (order) return criterion.ascending ? order : -order;
 return a.index - b.index;
 })
 .forEach(entry => dropListing.appendChild(entry.item));
+TCNDDF.saveListState();
 };
 
 /* Sort bar: chips toggle ascending/descending and can be removed */
@@ -228,6 +239,7 @@ add = document.getElementById("sortadd");
 
 add.addEventListener("change", function () {
 sortCriteria.push({key: add.value, ascending: true});
+TCNDDF.sessionSet("fp-sort", JSON.stringify(sortCriteria));
 TCNDDF.renderSortBar();
 TCNDDF.applySort();
 });
@@ -238,6 +250,7 @@ criterion = chip.criterion;
 if (!criterion) return;
 if (evt.target.className === "sortdir") criterion.ascending = !criterion.ascending;
 if (evt.target.className === "sortremove") sortCriteria.splice(sortCriteria.indexOf(criterion), 1);
+TCNDDF.sessionSet("fp-sort", JSON.stringify(sortCriteria));
 TCNDDF.renderSortBar();
 TCNDDF.applySort();
 });
@@ -279,6 +292,7 @@ add.parentNode.style.display = add.options.length > 1 ? "" : "none";
 /* Sort chip order after a drag sets criterion priority */
 TCNDDF.readSortChips = function () {
 sortCriteria = Array.from(document.getElementById("sortchips").children, chip => chip.criterion);
+TCNDDF.sessionSet("fp-sort", JSON.stringify(sortCriteria));
 TCNDDF.applySort();
 };
 
@@ -362,6 +376,7 @@ TCNDDF.updateActiveFont = function (target) {
 		dropListItem[i].className = "";
 	}
 	target.className = "active";
+	TCNDDF.saveListState();
 
 	// window.currentFont = getFontFamily;
 
@@ -579,6 +594,139 @@ var content = displayContainer.innerHTML;
 persistantStorage.setItem(storageKey, content);
 };
 
+/* Loaded fonts are kept in IndexedDB (localStorage is too small for font
+   files) for as long as this browser tab is open, so switching between the
+   script pages or reloading keeps them. A new tab starts empty. */
+var FONT_DB = "fontproof",
+FONT_STORE = "fonts",
+FONT_MAX_AGE = 2 * 24 * 60 * 60 * 1000, // drop other tabs' fonts after two days
+fontDB = null;
+
+TCNDDF.sessionGet = function (key) {
+try { return sessionStorage.getItem(key); } catch (e) { return null; }
+};
+TCNDDF.sessionSet = function (key, value) {
+try { sessionStorage.setItem(key, value); } catch (e) {}
+};
+
+/* One id per browser tab; sessionStorage survives page changes within it */
+TCNDDF.sessionId = function () {
+var id = TCNDDF.sessionGet("fp-session");
+if (!id) {
+id = Date.now() + "-" + Math.random().toString(36).slice(2);
+TCNDDF.sessionSet("fp-session", id);
+}
+return id;
+};
+
+TCNDDF.fontStore = function (mode) {
+if (!fontDB) {
+fontDB = new Promise(function (resolve, reject) {
+var request = indexedDB.open(FONT_DB, 1);
+request.onupgradeneeded = function () {
+request.result.createObjectStore(FONT_STORE, {keyPath: ["session", "name"]});
+};
+request.onsuccess = function () { resolve(request.result); };
+request.onerror = function () { reject(request.error); };
+});
+}
+return fontDB.then(db => db.transaction(FONT_STORE, mode).objectStore(FONT_STORE));
+};
+
+TCNDDF.storeFont = function (name, size, data) {
+TCNDDF.fontStore("readwrite")
+.then(store => store.put({session: TCNDDF.sessionId(), name: name, size: size, data: data, saved: Date.now()}))
+.catch(err => console.warn("Could not keep font for other pages", err));
+};
+
+/* Remember the list order and the active font */
+TCNDDF.saveListState = function () {
+var items = dropListing.getElementsByTagName("li"),
+active = dropListing.querySelector("li.active");
+TCNDDF.sessionSet("fp-order", JSON.stringify(Array.from(items, item => item.title)));
+TCNDDF.sessionSet("fp-active", active ? active.title : "");
+};
+
+/* Read this tab's saved fonts, and drop other tabs' fonts once they're old */
+TCNDDF.readSessionFonts = function () {
+var session = TCNDDF.sessionId();
+return TCNDDF.fontStore("readwrite").then(store => new Promise(function (resolve, reject) {
+var fonts = [],
+cursorRequest = store.openCursor();
+cursorRequest.onerror = () => reject(cursorRequest.error);
+cursorRequest.onsuccess = function () {
+var cursor = cursorRequest.result;
+if (!cursor) return resolve(fonts);
+var font = cursor.value;
+if (font.session === session) fonts.push(font);
+else if (Date.now() - font.saved > FONT_MAX_AGE) cursor.delete();
+cursor.continue();
+};
+}));
+};
+
+/* While saved fonts load, show their names in the font bar right away,
+   marked as loading, so switching pages doesn't flash an empty bar */
+TCNDDF.showPlaceholders = function () {
+var bar = document.getElementById("fonts");
+if (!bar || !document.documentElement.classList.contains("restoring")) return;
+JSON.parse(TCNDDF.sessionGet("fp-order") || "[]").forEach(function (name) {
+var item = document.createElement("li"),
+label = document.createElement("span");
+item.className = "placeholder";
+label.textContent = name;
+item.appendChild(label);
+bar.appendChild(item);
+});
+};
+
+TCNDDF.endRestoring = function () {
+Array.from(dropListing.querySelectorAll("li.placeholder"), item => item.remove());
+document.documentElement.classList.remove("restoring");
+};
+
+TCNDDF.restoreFonts = function () {
+if (!window.indexedDB) return TCNDDF.endRestoring();
+var order = JSON.parse(TCNDDF.sessionGet("fp-order") || "[]"),
+activeName = TCNDDF.sessionGet("fp-active"),
+sort = JSON.parse(TCNDDF.sessionGet("fp-sort") || "[]");
+
+(TCNDDF.savedFonts || TCNDDF.readSessionFonts()).then(function (fonts) {
+TCNDDF.endRestoring();
+if (!fonts.length) return;
+
+var position = name => { var i = order.indexOf(name); return i === -1 ? order.length : i; };
+fonts.sort((a, b) => position(a.name) - position(b.name));
+sortCriteria = sort.filter(criterion => SORT_KEYS[criterion.key]);
+TCNDDF.renderSortBar();
+fonts.forEach(font => TCNDDF.addFont(font.name, font.size, font.data, false, true));
+
+var items = Array.from(dropListing.getElementsByTagName("li")),
+active = items.find(item => item.title === activeName) || items[items.length - 1];
+TCNDDF.updateActiveFont(active);
+}).catch(function (err) {
+TCNDDF.endRestoring();
+console.warn("Could not restore fonts", err);
+});
+};
+
+/* Forget this tab's fonts and start over */
+TCNDDF.clearFonts = function () {
+var session = TCNDDF.sessionId();
+["fp-order", "fp-active", "fp-sort"].forEach(key => { try { sessionStorage.removeItem(key); } catch (e) {} });
+TCNDDF.fontStore("readwrite").then(function (store) {
+var cursorRequest = store.openCursor();
+cursorRequest.onsuccess = function () {
+var cursor = cursorRequest.result;
+if (cursor) {
+if (cursor.value.session === session) cursor.delete();
+cursor.continue();
+}
+};
+cursorRequest.transaction.oncomplete = () => location.reload();
+}).catch(() => location.reload());
+};
+
 /* Offline cache methods */
 TCNDDF.updateCache = function () {
 webappCache.swapCache();
@@ -598,6 +746,15 @@ evt.cancelBubble = true;
 evt.returnValue = false;
 }
 };
+
+/* If this tab has fonts from another page, start reading them now and show
+   the loading state from the first paint */
+if (window.indexedDB && JSON.parse(TCNDDF.sessionGet("fp-order") || "[]").length) {
+document.documentElement.classList.add("restoring");
+TCNDDF.savedFonts = TCNDDF.readSessionFonts();
+TCNDDF.savedFonts.catch(() => {}); // reported when restoring
+document.addEventListener("DOMContentLoaded", TCNDDF.showPlaceholders, false);
+}
 
 window.addEventListener("load", TCNDDF.setup, false);
 })();

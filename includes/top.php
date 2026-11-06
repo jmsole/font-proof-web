@@ -1,7 +1,11 @@
 <!-- Header -->
 <div id="fonts"></div>
 <section id="top">
-	<header><h1>Drag fonts here <label for="upload" id="fileup">or <u>click here</u> to load fonts</label><input type="file" id="upload" multiple></h1></header>
+	<header>
+		<a href="https://dograytype.com" id="logo" title="Dogray Type Foundry"><img src="images/dogray_logo.svg" alt="Dogray"></a>
+		<h1 id="wordmark">Font Proof</h1>
+		<p id="dropprompt">Drag font files here, or <label for="upload" id="fileup">Load fonts</label><input type="file" id="upload" multiple><button type="button" id="clearfonts" title="Remove all loaded fonts">Clear</button></p>
+	</header>
 </section>
 <!-- OT Features Menu -->
 <div id="controlcontainer">

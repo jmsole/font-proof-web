@@ -12,42 +12,58 @@
 
 :root {
 
-/* Primary: Rubylicious */
---primary-100: #FFF2F4;
---primary-200: #FEBAC7;
---primary-300: #FB809E;
---primary-400: #F0467A;
---primary-500: #DB0F5A;
---primary-600: #AE054D;
---primary-700: #81013F;
---primary-800: #54002D;
---primary-900: #260017;
+/* Colors follow dograytype.com:
+   background #f3f1ec, text #6100e0, accent #ff6b6b, dark #2a272e */
 
+/* Primary: Dogray coral (pops, highlights, the font bar) */
+--primary-100: #FFF0EE;
+--primary-200: #FFD4CC;
+--primary-300: #FFA8A1;
+--primary-400: #FF8585;
+--primary-500: #FF6B6B;
+--primary-600: #E04848;
+--primary-700: #B83232;
+--primary-800: #8A2222;
+--primary-900: #5C1414;
 
-/* Accent: Megaman Helmet */
---accent-100: #F2F4FF;
---accent-200: #B6C4FF;
---accent-300: #799AFE;
---accent-400: #3C77FD;
---accent-500: #005CFA;
---accent-600: #0054C5;
---accent-700: #004690;
---accent-800: #00315B;
---accent-900: #001726;
+/* Accent: Dogray purple (text, borders, selected states) */
+--accent-100: #EFE6FC;
+--accent-200: #D9C6F9;
+--accent-300: #B08CF2;
+--accent-400: #8445EA;
+--accent-500: #6100E0;
+--accent-600: #5000B8;
+--accent-700: #3E008F;
+--accent-800: #2C0066;
+--accent-900: #1A003D;
 
-/* Neutral */
---neutral-100: #FAFAFC;
---neutral-200: #EAEBEE;
---neutral-300: #DBDCE0;
---neutral-400: #CCCED2;
---neutral-500: #BCBFC4;
---neutral-600: #94989D;
---neutral-700: #6D7175;
---neutral-800: #474B4E;
---neutral-900: #222526;
+/* Neutral: warm greys from the Dogray cream to the Dogray dark */
+--neutral-100: #F3F1EC;
+--neutral-200: #E8E5DE;
+--neutral-300: #D9D5CD;
+--neutral-400: #C6C1B9;
+--neutral-500: #ACA6A0;
+--neutral-600: #8E8890;
+--neutral-700: #6B6670;
+--neutral-800: #48444D;
+--neutral-900: #2A272E;
 
+/* Interface font: Baila, with the system font as fallback for missing glyphs */
+--ui-font: "Dogray UI", -apple-system, BlinkMacSystemFont, sans-serif;
 
 }
+
+/* Baila has a small x-height (436/1000), so scale it up to sit roughly
+   like the system UI font did at the same pixel sizes. */
+@font-face {
+  font-family: "Dogray UI";
+  src: url(../fonts/Baila-Regular.woff2) format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 112%;
+}
+
 
 body {
   background: var(--neutral-100);
@@ -77,7 +93,7 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--ui-font);
   font-weight: normal;
 }
 
@@ -100,25 +116,96 @@ input[type='file']{
   display: none;
 }
 
+input[type='checkbox'],
+input[type='radio'] {
+  accent-color: var(--accent-500);
+}
+
+/* One card: logo + wordmark on the left, drop prompt + load button on the right.
+   The whole #top section accepts dropped fonts. */
 header {
-  margin: 0;
-  padding: 0;
-}
-
-header h1 {
-  margin: 0;
-  padding: 20px 20px;
-  background: var(--primary-300);
-  color: var(--neutral-100);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 8px;
+  padding: 10px 12px 10px 10px;
+  border: 1.5px solid var(--accent-500);
   border-radius: 8px;
-  transition: background-color 0.3s ease;
+  background: var(--neutral-100);
 }
 
-header h1:hover {
-  background-color: var(--primary-400);
-  transition: background-color 0.3s ease;
-  color: var(--neutral-100);
+#logo {
+  flex: 0 0 auto;
+  display: block;
+  line-height: 0;
 }
+
+#logo img {
+  height: 40px;
+  width: auto;
+}
+
+#wordmark {
+  flex: 1 1 auto;
+  margin: 0;
+  color: var(--accent-500);
+  font-size: 20px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+#dropprompt {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: var(--neutral-700);
+  font: normal 14px/1 var(--ui-font);
+}
+
+#fileup {
+  display: inline-block;
+  padding: 9px 16px 8px;
+  background: var(--accent-500);
+  color: var(--neutral-100);
+  border: 1.5px solid var(--accent-500);
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#fileup:hover {
+  background: var(--neutral-100);
+  color: var(--accent-500);
+}
+
+/* Secondary button, only shown once fonts are loaded */
+#clearfonts {
+  display: none;
+  padding: 9px 14px 8px;
+  background: var(--neutral-100);
+  color: var(--accent-500);
+  border: 1.5px solid var(--accent-500);
+  border-radius: 4px;
+  font: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.hasfonts #clearfonts {
+  display: inline-block;
+}
+
+#clearfonts:hover {
+  background: var(--accent-100);
+}
+
 /* Font Selection */
 #fonts {
   width: calc(100% - 60px);
@@ -131,6 +218,54 @@ header h1:hover {
   /* height: 24px; */
   border-radius: 8px;
   overflow:visible;
+}
+
+/* Restoring fonts after switching pages: the bar shows the saved font names
+   straight away, and the specimens stay dimmed until the fonts are in */
+.restoring #fonts {
+  margin-top: 8px;
+}
+
+.restoring header {
+  margin-top: 8px;
+}
+
+.restoring #fonts::before {
+  content: "Loading fonts\2026";
+  display: inline-block;
+  margin: 0 8px 0 0;
+  color: var(--accent-500);
+  font: normal 13px/1 var(--ui-font);
+  animation: fontsloading 1s ease-in-out infinite alternate;
+}
+
+#fonts li.placeholder {
+  color: var(--neutral-700);
+  font-family: var(--ui-font);
+  cursor: progress;
+  animation: fontsloading 1s ease-in-out infinite alternate;
+}
+
+@keyframes fontsloading {
+  from { opacity: 1; }
+  to { opacity: 0.35; }
+}
+
+#custom .tabs > div {
+  transition: opacity 0.2s ease;
+}
+
+.restoring #custom .tabs > div {
+  opacity: 0.15;
+}
+
+/* With fonts loaded, the font bar sits above the header card */
+.hasfonts #fonts {
+  margin-top: 8px;
+}
+
+.hasfonts header {
+  margin-top: 8px;
 }
 
 #fonts li {
@@ -174,14 +309,14 @@ header h1:hover {
   margin: 0 20px;
   padding: 12px 20px;
   background-color: var(--neutral-100);
-  color: var(--accent-400);
-  font: normal 13px/13px -apple-system, BlinkMacSystemFont, sans-serif !important;
-  border: 1px solid var(--accent-500);
+  color: var(--neutral-700);
+  font: normal 13px/13px var(--ui-font) !important;
+  border: 1.5px solid var(--accent-500);
   border-radius: 8px;
 }
 
 #toggleotfeatures a {
-  color: var(--primary-500);
+  color: var(--accent-500);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -214,7 +349,7 @@ header h1:hover {
 }
 
 .sortchip button:hover {
-  color: var(--primary-500);
+  color: var(--primary-600);
 }
 
 /* A small "+" chip, laid out like the sort chips so it sits on the text line;
@@ -225,8 +360,7 @@ header h1:hover {
   padding: 1px 5px;
   border-radius: 4px;
   background: var(--accent-100);
-  color: var(--primary-500);
-  font-weight: bold;
+  color: var(--accent-500);
 }
 
 #sortaddchip:hover {
@@ -251,10 +385,10 @@ header h1:hover {
   margin: -1px 20px 0px;
   padding: 0px 0px 8px;
   background-color: var(--neutral-100);
-  color: black;
-  font: normal 13px/13px -apple-system, BlinkMacSystemFont, sans-serif !important;
+  color: var(--neutral-900);
+  font: normal 13px/13px var(--ui-font) !important;
   border-radius: 8px;
-  border: 1px solid var(--accent-500);
+  border: 1.5px solid var(--accent-500);
 }
 
 #otvariations {
@@ -266,16 +400,17 @@ header h1:hover {
   padding: 4px 20px;
   font-feature-settings: "tnum" on;
   background-color: var(--neutral-100);
-  color: black;
-  font: normal 13px/13px -apple-system, BlinkMacSystemFont, sans-serif !important;
+  color: var(--neutral-900);
+  font: normal 13px/13px var(--ui-font) !important;
   border-radius: 8px;
-  border: 1px solid var(--accent-500);
+  border: 1.5px solid var(--accent-500);
 }
 
 .vartitle {
   padding: 8px 0px ;
-  color: var(--primary-500) !important;
-  font-weight: bold;
+  color: var(--accent-500) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .sliderlabels {
@@ -284,7 +419,7 @@ header h1:hover {
   padding: 0 5px 8px 0 !important;
   display: flex;
   font-size: 10px;
-  color: var(--accent-400) !important;
+  color: var(--accent-500) !important;
 }
 
 #varaxes {
@@ -296,7 +431,6 @@ header h1:hover {
 #varaxes div{
   padding-bottom: 4px;
   color: var(--accent-500);
-  font-weight: bold;
 }
 
 .labeldiv {
@@ -315,7 +449,7 @@ header h1:hover {
   width: 40px;
   text-align: center;
   border-radius: 4px;
-  border: 1px solid var(--accent-500);
+  border: 1.5px solid var(--accent-500);
 }
 
 #varaxes input[type="range"] {
@@ -352,7 +486,7 @@ header h1:hover {
   /* creating a custom design */
   height: 15px;
   width: 15px;
-  background-color: var(--accent-400);
+  background-color: var(--accent-500);
   border-radius: 50%;
   /* border: 2px solid #f50; */
   transition: .2s ease-in-out;
@@ -361,7 +495,7 @@ header h1:hover {
 #varaxes input[type="range"]::-moz-range-thumb {
   height: 15px;
   width: 15px;
-  background-color: var(--accent-400);
+  background-color: var(--accent-500);
   border-radius: 50%;
   /* border: 1px solid #f50; */
   transition: .2s ease-in-out;
@@ -395,13 +529,14 @@ header h1:hover {
 }
 
 .featitles {
-  color: var(--primary-500);
-  font-weight: bold;
+  color: var(--accent-500);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 #instances{
   width: 300px;
-  border: 1px solid var(--accent-500);
+  border: 1.5px solid var(--accent-500);
   padding-left: 10px;
   border-radius: 8px;
   font-size: 13px;
@@ -415,7 +550,7 @@ header h1:hover {
 #csscode {
   margin: 0;
   padding: 0;
-  font: normal 10px/10px -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font: normal 10px/10px var(--ui-font) !important;
 }
 
 /*-----------------------------------------------------------------------------------------------------
@@ -432,8 +567,8 @@ header h1:hover {
 }
 
 #custom p.sizelabel {
-  font: normal 10px/10px -apple-system, BlinkMacSystemFont, sans-serif !important;
-  color: var(--neutral-600);
+  font: normal 10px/10px var(--ui-font) !important;
+  color: var(--neutral-700);
 }
 
 /* Navigation */
@@ -443,7 +578,7 @@ ul.tabNavigation {
   list-style: none;
   margin: 0px 20px;
   padding: 0;
-  font: normal 14px/14px -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font: normal 14px/14px var(--ui-font) !important;
 }
 
 ul.tabNavigation li {
@@ -456,11 +591,11 @@ ul.tabNavigation li a {
   display: block;
   padding: 7px 10px;
   margin: 4px 2px 2px 0px;
-  color: var(--neutral-900);
+  color: var(--accent-500);
   text-decoration: none;
   background-color: var(--neutral-100);
   border-radius: 6px;
-  border: 1px solid var(--accent-500);
+  border: 1.5px solid var(--accent-500);
 }
 
 ul.tabNavigation li a.selected {
@@ -469,8 +604,8 @@ ul.tabNavigation li a.selected {
   transition: background-color 0.2s ease;
 }
 ul.tabNavigation li a:hover {
-  background-color: var(--accent-200);
-  color: var(--neutral-900);
+  background-color: var(--accent-100);
+  color: var(--accent-600);
   transition: background-color 0.2s ease;
 }
 ul.tabNavigation li a:focus {
@@ -566,8 +701,8 @@ div.tabs>div h2 {
 }
 
 #footer p {
-  color: var(--neutral-500);
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  color: var(--neutral-700);
+  font-family: var(--ui-font) !important;
   font-size: 10px;
   line-height: 1.1em;
   font-style: normal;
@@ -575,7 +710,7 @@ div.tabs>div h2 {
 }
 
 #footer p a {
-  color: var(--neutral-500);
+  color: var(--accent-500);
 }
 
 .metrics-box mark {
@@ -590,7 +725,7 @@ div.tabs>div h2 {
 input[id="text-input-metrics"] {
   width: 300px;
   font-family:inherit;
-  border: 1px solid var(--accent-500);
+  border: 1.5px solid var(--accent-500);
   border-radius: 4px;
   font-size: 24px;
 }
@@ -602,8 +737,9 @@ button[id="text-button-metrics"] {
 }
 
 h4 {
-  font: bold 16px/16px -apple-system, BlinkMacSystemFont, sans-serif !important;
-  color: var(--primary-400);
+  font: normal 16px/16px var(--ui-font) !important;
+  text-transform: uppercase;
+  color: var(--accent-500);
 }
 
 .metricsword {
@@ -756,7 +892,7 @@ h4 {
   ---------------------------------------------------------------------------------------------------*/
 #comparecontrols,
 .comparelabel {
-  font: normal 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font: normal 13px/1.4 var(--ui-font) !important;
   font-feature-settings: normal !important;
   font-variation-settings: normal !important;
   text-transform: none;
