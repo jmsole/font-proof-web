@@ -1,0 +1,11 @@
+{
+  "extends": "$app/tsconfig",
+  "include": ["src", "*"],
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true
+  }
+}

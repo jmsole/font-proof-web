@@ -1,0 +1,30 @@
+{
+  "name": "font-proof",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "BASE_PATH=/proof vite build",
+    "preview": "BASE_PATH=/proof vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+  },
+  "dependencies": {
+    "brotli": "^2.1.0",
+    "lib-font": "3.0.4",
+    "pako": "^3.0.3"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^4.0.1",
+    "@sveltejs/kit": "^3.4.0",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@types/node": "^26.6.6",
+    "svelte": "^5.58.0",
+    "svelte-check": "^4.7.8",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.8"
+  },
+  "imports": {
+    "#lib/*": "./src/lib/*"
+  }
+}
